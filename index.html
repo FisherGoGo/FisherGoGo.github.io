@@ -165,7 +165,7 @@
   <div class="widget-wrap">
     <div class="widget">
       <h3 class="widget-title">Tags</h3>
-      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a></li></ul>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/graph/" rel="tag">graph</a></li></ul>
     </div>
   </div>
 
@@ -245,6 +245,109 @@ More info: Deployment
     <a class="right-panel  non-pic  "
       
       href="/2024/11/19/hello-world/" 
+    >
+       
+      <i class="fa-solid fa-angle-right non-pic"></i>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+
+
+
+
+
+   
+
+
+<article id="post-save_graph" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2024/11/19/save_graph/">存图</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2024-11-18T16:00:00.000Z" itemprop="datePublished">2024-11-19</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            867 words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/graph/" rel="tag">graph</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            
+               前言
+
+存图一般有三种方法，既邻接矩阵，邻接表，链式前向星；由于我基本只用第一和一三钟，所以就介绍下这两种存图方式
+
+ 邻接矩阵
+ 内容
+
+所谓矩阵，就是用矩阵去存图
+对于有n个点的图，便用 n×nn\times nn×n 的矩阵去存，在c++里便是用数组实现
+假设用 graphi,jgraph_{i,j}graphi,j​ 代表点i到点j有一条边权为 graphi,jgraph_{i,j}graphi,j​ 的边
+
+ 代码
+1234void add_edge(int u,int v,int w)&#123;	graph[u][v]=w;	return ;&#125;
+ 优缺点
+
+优点：存储查询方便，使用简单
+缺点；当点数太多而边很少时，会占用十分多空间（O(n2)O(n^2)O(n2)），并且浪费大量空间
+
+ 链式前向星
+ 内容
+
+链式前向星是一种存边的存法，将同一起点的边用类似链表结构存起来
+我们将会用到：
+
+NodeiNode_iNodei​ ，每条边的信息，里边有：
+
+to 终点
+w 边权
+next 下一条边
+
+
+headihead_iheadi​  每个点的第一条边，...
+            
+          </div>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  non-pic  "
+      
+      href="/2024/11/19/save_graph/" 
     >
        
       <i class="fa-solid fa-angle-right non-pic"></i>
