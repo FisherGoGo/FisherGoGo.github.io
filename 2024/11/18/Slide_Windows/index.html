@@ -14,17 +14,21 @@
   
 
   
-  <title>Hexo</title>
+  <title>滑动窗口 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="作用  长度为k的窗口在一个数列中滑动 处理长度为k的序列中的数据问题，比如求连续区间内最大最小值   实现   用一个 Q 队列存储当前窗口里的数，Num最左侧的元素既当前窗口最大（小）值  如果是求最大值，Q 队列的元素不递增，反之不递减     例子  一个 1 3 -1 -3 5 3 6 7 的数列，窗口大小为 3，我们要找窗口内最大值 1 先进来，数组内没有比1 大的值，直接压入1 然">
+<meta property="og:type" content="article">
+<meta property="og:title" content="滑动窗口">
+<meta property="og:url" content="http://example.com/2024/11/18/Slide_Windows/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="作用  长度为k的窗口在一个数列中滑动 处理长度为k的序列中的数据问题，比如求连续区间内最大最小值   实现   用一个 Q 队列存储当前窗口里的数，Num最左侧的元素既当前窗口最大（小）值  如果是求最大值，Q 队列的元素不递增，反之不递减     例子  一个 1 3 -1 -3 5 3 6 7 的数列，窗口大小为 3，我们要找窗口内最大值 1 先进来，数组内没有比1 大的值，直接压入1 然">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-11-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-11-19T13:33:33.141Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -53,14 +57,14 @@
   
   
     
-<div id="banner" class=" is_home ">
+<div id="banner" class="">
   <img src="/back.jpg" itemprop="image">
   <div id="banner-dim"></div>
 </div>
  
    
   <div id="main-grid" class="  ">
-    <div id="nav" class=" is_home "  >
+    <div id="nav" class=""  >
       <navbar id="navbar">
   <nav id="title-nav">
     <a href="/">
@@ -173,95 +177,12 @@
 </sidebar>
     </div>
     <div id="content-body">
-      
-   
-
-
-<article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2024/11/19/hello-world/">Hello World</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2024-11-19T12:47:00.630Z" itemprop="datePublished">2024-11-19</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-    Uncategorized 
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            367 words 
-          </div>
-        </div>
-        
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            
-              Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
- Quick Start
- Create a new post
-1$ hexo new &quot;My New Post&quot;
-More info: Writing
- Run server
-1$ hexo server
-More info: Server
- Generate static files
-1$ hexo generate
-More info: Generating
- Deploy to remote sites
-1$ hexo deploy
-More info: Deployment
-
-            
-          </div>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  non-pic  "
-      
-      href="/2024/11/19/hello-world/" 
-    >
        
-      <i class="fa-solid fa-angle-right non-pic"></i>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
-
-
-
-   
 
 
 <article id="post-Slide_Windows" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
    
   <div class="article-inner">
     <div class="article-main">
@@ -271,8 +192,8 @@ More info: Deployment
   <div class="main-title-dot"></div>
   
     
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2024/11/18/Slide_Windows/">滑动窗口</a>
+      <h1 class="p-name article-title" itemprop="headline name">
+        滑动窗口
       </h1>
     
   
@@ -298,45 +219,52 @@ More info: Deployment
       </header>
       <div class="e-content article-entry" itemprop="articleBody">
         
-          <div class="truncate-text">
-            
-               作用
+          <h1 id="作用"><a class="markdownIt-Anchor" href="#作用"></a> 作用</h1>
+<ul>
+<li>长度为k的窗口在一个数列中滑动</li>
+<li>处理长度为k的序列中的数据问题，比如求连续区间内最大最小值</li>
+</ul>
+<h1 id="实现"><a class="markdownIt-Anchor" href="#实现"></a> 实现</h1>
+<ul>
+<li>
+<p>用一个 <em>Q</em> 队列存储当前窗口里的数，Num最左侧的元素既当前窗口最大（小）值</p>
+<ul>
+<li>如果是求最大值，<em>Q</em> 队列的元素不递增，反之不递减<br />
+<br></li>
+</ul>
+</li>
+<li>
+<p>例子</p>
+<ul>
+<li>一个 <em>1 3 -1 -3 5 3 6 7</em> 的数列，窗口大小为 3，我们要找窗口内最大值</li>
+<li><em>1</em> 先进来，数组内没有比<em>1</em> 大的值，直接压入<em>1</em></li>
+<li>然后 <em>3</em> 进来，<em>3</em> 比 <em>1</em> 大，<em>1</em> 永远不可能成为窗口内最大值，所以 <em>1</em> 弹出</li>
+<li><em>-1</em> 进来，如果 <em>3</em> 出去了，<em>-1</em> 还有可能成为最大值，所以 <em>-1</em> 入队</li>
+<li><em>-3</em> 同上，入队</li>
+<li>现在队列是 <em>3 -1 -3</em> ，开始考虑 <em>5</em> 入队，但是别忘记窗口大小为 <strong>3</strong> ，所以在窗口之外的元素要出队，比如 <em>3</em> 就要出队，然后 <em>5</em> 进来就同上<br />
+<br></li>
+</ul>
+</li>
+<li>
+<p>具体实现</p>
+<ul>
+<li>使用双指针，一个 <em>head</em> 代表队列的头，一个 <em>tail</em> 表示队列的尾部</li>
+<li>同时用一个数组 <em>pos</em> 存元素的下标</li>
+<li>记住 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mi>o</mi><msub><mi>s</mi><mrow><mi>t</mi><mi>a</mi><mi>i</mi><mi>l</mi></mrow></msub><mo>−</mo><mi>p</mi><mi>o</mi><msub><mi>s</mi><mrow><mi>h</mi><mi>e</mi><mi>a</mi><mi>d</mi></mrow></msub></mrow><annotation encoding="application/x-tex">pos_{tail}-pos_{head}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7777700000000001em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">p</span><span class="mord mathnormal">o</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">p</span><span class="mord mathnormal">o</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">h</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 既窗口长度小于给定的长度<br />
+<br></li>
+</ul>
+</li>
+<li>
+<p>具体代码</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//m为窗口长度</span><br><span class="line"></span><br><span class="line">//区间最大值</span><br><span class="line">for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">	while(head&lt;=tail&amp;&amp;pos[head]+m&lt;=i) head++;</span><br><span class="line">	while(head&lt;=tail&amp;&amp;a[i]&gt;a[pos[tail]]) tail--;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//区间最小值</span><br><span class="line">for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">	while(head&lt;=tail&amp;&amp;pos[head]+m&lt;=i) head++;</span><br><span class="line">	while(head&lt;=tail&amp;&amp;a[i]&lt;a[pos[tail]]) tail--;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="例题"><a class="markdownIt-Anchor" href="#例题"></a> 例题</h1>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1886">洛谷 P1886</a>  <strong>模板题</strong></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2251">洛谷 P2251</a></li>
+</ul>
 
-长度为k的窗口在一个数列中滑动
-处理长度为k的序列中的数据问题，比如求连续区间内最大最小值
-
- 实现
-
-
-用一个 Q 队列存储当前窗口里的数，Num最左侧的元素既当前窗口最大（小）值
-
-如果是求最大值，Q 队列的元素不递增，反之不递减
-
-
-
-
-例子
-
-一个 1 3 -1 -3 5 3 6 7 的数列，窗口大小为 3，我们要找窗口内最大值
-1 先进来，数组内没有比1 大的值，直接压入1
-然后 3 进来，3 比 1 大，1 永远不可能成为窗口内最大值，所以 1 弹出
--1 进来，如果 3 出去了，-1 还有可能成为最大值，所以 -1 入队
--3 同上，入队
-现在队列是 3 -1 -3 ，开始考虑 5 入队，但是别忘记窗口大小为 3 ，所以在窗口之外的元素要出队，比如 3 就要出队，然后 5 进来就同上
-
-
-
-
-具体实现
-
-使用双指针，一个 head 代表队列的头，一个 tail 表示队列的尾部
-同时用一个数组 pos 存元素的下标
-记住 postail−posheadpos_{tail}-pos_{head}postail​−poshead​ 既窗口长度小于给定的长度
-
-
-...
-            
-          </div>
         
       </div>
 
@@ -344,113 +272,40 @@ More info: Deployment
     </div>
     
      
-    <a class="right-panel  non-pic  "
-      
-      href="/2024/11/18/Slide_Windows/" 
-    >
-       
-      <i class="fa-solid fa-angle-right non-pic"></i>
-       
-    </a>
-     
   </div>
   
-</article>
-
-
-
-
-
-
-   
-
-
-<article id="post-backpack" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
     
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2024/11/18/backpack/">背包问题</a>
-      </h1>
+<nav id="article-nav">
+  <a class="article-nav-btn left "
     
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2024-11-17T16:00:00.000Z" itemprop="datePublished">2024-11-18</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-    Uncategorized 
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            2.1k words 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            
-               前言
-
-背包问题，一般是对一堆有不同价值和不同体积（重量…）的物品，我们用有限空间的背包去装物品，去求最大价值。
-背包问题从最简单的 01背包 开始，到 完全背包 多重背包 等等
-洛谷题单
-
- 01背包
- 内容
-
-一般是有 n 个价值为 viv_ivi​ 重量为 wiw_iwi​ 的物品，且每个物品都只有一个，所以只有取与不取的选择，因此称为 01背包
-
- 做法
-
-设数组 fi,jf_{i,j}fi,j​ 为遍历到第 i 个物品，占用了 j 空间时最大价值
-我们可以知道，对于第 i 个物品
-
-如果不取它，那么就有 fi,j=fi−1,jf_{i,j}=f_{i-1,j}fi,j​=fi−1,j​
-如果取它，那么就有 fi,j=fi−1,j−wi+vif_{i,j}=f_{i-1,j-w_i}+v_ifi,j​=fi−1,j−wi​​+vi​
-
-
-综上我们可以得出递推公式：fi,j=max⁡(fi−1,j,fi−1,j−wi+vi)f_{i,j}=\max(f_{i-1,j} , f_{i-1,j-w_i}+v_i)fi,j​=max(fi−1,j​,fi−1,j−wi​​+vi...
-            
-          </div>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  non-pic  "
+      href="/2024/11/19/hello-world/"
+      title="Hello World"
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
       
-      href="/2024/11/18/backpack/" 
-    >
-       
-      <i class="fa-solid fa-angle-right non-pic"></i>
-       
-    </a>
-     
-  </div>
+        Hello World
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2024/11/18/backpack/"
+      title="背包问题"
+     >
+
+    <p class="title-text">
+      
+        背包问题
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
   
 </article>
-
-
-
 
 
 

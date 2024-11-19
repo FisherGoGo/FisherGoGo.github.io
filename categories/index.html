@@ -14,17 +14,21 @@
   
 
   
-  <title>Hexo</title>
+  <title>categories | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="动态规格">
+<meta property="og:type" content="website">
+<meta property="og:title" content="categories">
+<meta property="og:url" content="http://example.com/categories/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="动态规格">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-25T00:15:28.000Z">
+<meta property="article:modified_time" content="2024-11-19T13:58:10.706Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -53,14 +57,14 @@
   
   
     
-<div id="banner" class=" is_home ">
+<div id="banner" class="">
   <img src="/back.jpg" itemprop="image">
   <div id="banner-dim"></div>
 </div>
  
    
   <div id="main-grid" class="  ">
-    <div id="nav" class=" is_home "  >
+    <div id="nav" class=""  >
       <navbar id="navbar">
   <nav id="title-nav">
     <a href="/">
@@ -173,11 +177,10 @@
 </sidebar>
     </div>
     <div id="content-body">
-      
-   
+       
 
 
-<article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+<article id="page-" class="h-entry article article-type-page" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
    
   <div class="article-inner">
     <div class="article-main">
@@ -187,8 +190,8 @@
   <div class="main-title-dot"></div>
   
     
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2024/11/19/hello-world/">Hello World</a>
+      <h1 class="p-name article-title" itemprop="headline name">
+        categories
       </h1>
     
   
@@ -196,7 +199,7 @@
 
         <div class='meta-info-bar'>
           <div class="meta-info">
-  <time class="dt-published" datetime="2024-11-19T12:47:00.630Z" itemprop="datePublished">2024-11-19</time>
+  <time class="dt-published" datetime="2024-06-25T00:15:28.000Z" itemprop="datePublished">2024-06-25</time>
 </div>
           <div class="need-seperator meta-info">
             <div class="meta-cate-flex">
@@ -207,32 +210,15 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            367 words 
+            4 words 
           </div>
         </div>
         
       </header>
       <div class="e-content article-entry" itemprop="articleBody">
         
-          <div class="truncate-text">
-            
-              Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
- Quick Start
- Create a new post
-1$ hexo new &quot;My New Post&quot;
-More info: Writing
- Run server
-1$ hexo server
-More info: Server
- Generate static files
-1$ hexo generate
-More info: Generating
- Deploy to remote sites
-1$ hexo deploy
-More info: Deployment
+          <p>动态规格</p>
 
-            
-          </div>
         
       </div>
 
@@ -240,217 +226,12 @@ More info: Deployment
     </div>
     
      
-    <a class="right-panel  non-pic  "
-      
-      href="/2024/11/19/hello-world/" 
-    >
-       
-      <i class="fa-solid fa-angle-right non-pic"></i>
-       
-    </a>
-     
   </div>
   
-</article>
-
-
-
-
-
-
-   
-
-
-<article id="post-Slide_Windows" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
     
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2024/11/18/Slide_Windows/">滑动窗口</a>
-      </h1>
-    
-  
-</div>
 
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2024-11-17T16:00:00.000Z" itemprop="datePublished">2024-11-18</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-    Uncategorized 
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            765 words 
-          </div>
-        </div>
-        
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            
-               作用
-
-长度为k的窗口在一个数列中滑动
-处理长度为k的序列中的数据问题，比如求连续区间内最大最小值
-
- 实现
-
-
-用一个 Q 队列存储当前窗口里的数，Num最左侧的元素既当前窗口最大（小）值
-
-如果是求最大值，Q 队列的元素不递增，反之不递减
-
-
-
-
-例子
-
-一个 1 3 -1 -3 5 3 6 7 的数列，窗口大小为 3，我们要找窗口内最大值
-1 先进来，数组内没有比1 大的值，直接压入1
-然后 3 进来，3 比 1 大，1 永远不可能成为窗口内最大值，所以 1 弹出
--1 进来，如果 3 出去了，-1 还有可能成为最大值，所以 -1 入队
--3 同上，入队
-现在队列是 3 -1 -3 ，开始考虑 5 入队，但是别忘记窗口大小为 3 ，所以在窗口之外的元素要出队，比如 3 就要出队，然后 5 进来就同上
-
-
-
-
-具体实现
-
-使用双指针，一个 head 代表队列的头，一个 tail 表示队列的尾部
-同时用一个数组 pos 存元素的下标
-记住 postail−posheadpos_{tail}-pos_{head}postail​−poshead​ 既窗口长度小于给定的长度
-
-
-...
-            
-          </div>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  non-pic  "
-      
-      href="/2024/11/18/Slide_Windows/" 
-    >
-       
-      <i class="fa-solid fa-angle-right non-pic"></i>
-       
-    </a>
-     
-  </div>
   
 </article>
-
-
-
-
-
-
-   
-
-
-<article id="post-backpack" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2024/11/18/backpack/">背包问题</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2024-11-17T16:00:00.000Z" itemprop="datePublished">2024-11-18</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-    Uncategorized 
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            2.1k words 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            
-               前言
-
-背包问题，一般是对一堆有不同价值和不同体积（重量…）的物品，我们用有限空间的背包去装物品，去求最大价值。
-背包问题从最简单的 01背包 开始，到 完全背包 多重背包 等等
-洛谷题单
-
- 01背包
- 内容
-
-一般是有 n 个价值为 viv_ivi​ 重量为 wiw_iwi​ 的物品，且每个物品都只有一个，所以只有取与不取的选择，因此称为 01背包
-
- 做法
-
-设数组 fi,jf_{i,j}fi,j​ 为遍历到第 i 个物品，占用了 j 空间时最大价值
-我们可以知道，对于第 i 个物品
-
-如果不取它，那么就有 fi,j=fi−1,jf_{i,j}=f_{i-1,j}fi,j​=fi−1,j​
-如果取它，那么就有 fi,j=fi−1,j−wi+vif_{i,j}=f_{i-1,j-w_i}+v_ifi,j​=fi−1,j−wi​​+vi​
-
-
-综上我们可以得出递推公式：fi,j=max⁡(fi−1,j,fi−1,j−wi+vi)f_{i,j}=\max(f_{i-1,j} , f_{i-1,j-w_i}+v_i)fi,j​=max(fi−1,j​,fi−1,j−wi​​+vi...
-            
-          </div>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  non-pic  "
-      
-      href="/2024/11/18/backpack/" 
-    >
-       
-      <i class="fa-solid fa-angle-right non-pic"></i>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
 
 
 
