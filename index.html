@@ -231,15 +231,17 @@
 
  实现
 
-可以用函数进行递推，如下
 
-1234567891011121314void dfs(int depth)&#123;          \\depth为当前搜索深度	for(---)&#123;		if(vis[i]==0)&#123;			vis[i]=1;         \\标记为搜索过			dfs(depth+1);     \\继续搜			vis[i]=0;         \\别忘了搜完将其状态回归		&#125;	&#125;	if(depth==N)&#123;             \\搜完了		---		return ;	&#125; 	return ;&#125;
+可以用函数进行递推，如下
+  
+  DFS
+  1234567891011121314void dfs(int depth)&#123;          \\depth为当前搜索深度	for(---)&#123;		if(vis[i]==0)&#123;			vis[i]=1;         \\标记为搜索过			dfs(depth+1);     \\继续搜			vis[i]=0;         \\别忘了搜完将其状态回归		&#125;	&#125;	if(depth==N)&#123;             \\搜完了		---		return ;	&#125; 	return ;&#125;
+
+
  运用
 
 
-最经典的应用，就是用DFS求全排列
-
-例题：洛谷 P115...
+最经典的应用，就是用DFS求全排...
             
           </div>
         
@@ -300,7 +302,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            867 words 
+            876 words 
           </div>
         </div>
         
@@ -323,7 +325,10 @@
 假设用 graphi,jgraph_{i,j}graphi,j​ 代表点i到点j有一条边权为 graphi,jgraph_{i,j}graphi,j​ 的边
 
  代码
-1234void add_edge(int u,int v,int w)&#123;	graph[u][v]=w;	return ;&#125;
+
+	邻接矩阵
+	1234void add_edge(int u,int v,int w)&#123;	graph[u][v]=w;	return ;&#125;
+	
  优缺点
 
 优点：存储查询方便，使用简单
@@ -342,7 +347,7 @@ w 边权
 next 下一条边
 
 
-headihead_iheadi​  每个点的第一条边，...
+headihead_iheadi​ ...
             
           </div>
         
@@ -403,7 +408,7 @@ headihead_iheadi​  每个点的第一条边，...
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            765 words 
+            769 words 
           </div>
         </div>
         
@@ -507,7 +512,7 @@ headihead_iheadi​  每个点的第一条边，...
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            2k words 
+            2.1k words 
           </div>
         </div>
         
