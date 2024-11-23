@@ -14,20 +14,24 @@
   
 
   
-  <title>Archives: 2024 | Fisher</title>
+  <title>数位dp | Fisher</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-  <meta name="description" content="ACM Note">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Fisher">
-<meta property="og:url" content="http://example.com/archives/2024/index.html">
+  <meta name="description" content="内容  数位DP就是一些形如：在区间 L−RL-RL−R 中有多少满足某条件的数 之类的问题 如果我们对每一个数进行检验，在题目范围太大时，明显时会超时的，那怎么办 这时候我们可以运用递归的记忆化搜索的思想，去一位一位处理，大大降低复杂度   实现  我们主要用递归函数去实现，如下  123456789101112131415int dp[pos][];int num[];int dfs(int">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数位dp">
+<meta property="og:url" content="http://example.com/2024/11/22/number_dp/index.html">
 <meta property="og:site_name" content="Fisher">
-<meta property="og:description" content="ACM Note">
+<meta property="og:description" content="内容  数位DP就是一些形如：在区间 L−RL-RL−R 中有多少满足某条件的数 之类的问题 如果我们对每一个数进行检验，在题目范围太大时，明显时会超时的，那怎么办 这时候我们可以运用递归的记忆化搜索的思想，去一位一位处理，大大降低复杂度   实现  我们主要用递归函数去实现，如下  123456789101112131415int dp[pos][];int num[];int dfs(int">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-11-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-11-23T12:38:49.124Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="algorithm">
+<meta property="article:tag" content="dp">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Fisher" type="application/atom+xml">
@@ -177,120 +181,117 @@
     <div id="content-body">
        
 
-<div class="archive-main-card">
-    <div class="archive-top">
-      <div class="main-title-bar">
-        <div class="main-title-dot"></div>
-        <h1 class="article-title">Archives</h1>
-      </div>    
+
+<article id="post-number_dp" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        数位dp
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2024-11-21T16:00:00.000Z" itemprop="datePublished">2024-11-22</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            714 words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dp/" rel="tag">dp</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h1 id="内容"><a class="markdownIt-Anchor" href="#内容"></a> 内容</h1>
+<ul>
+<li><strong>数位DP</strong>就是一些形如：<em>在区间 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>−</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">L-R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">L</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span></span> 中有多少满足某条件的数</em> 之类的问题</li>
+<li>如果我们对每一个数进行检验，在题目范围太大时，明显时会超时的，那怎么办</li>
+<li>这时候我们可以运用递归的记忆化搜索的思想，去一位一位处理，大大降低复杂度</li>
+</ul>
+<h1 id="实现"><a class="markdownIt-Anchor" href="#实现"></a> 实现</h1>
+<ul>
+<li>我们主要用递归函数去实现，如下</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> dp[pos][];</span><br><span class="line"><span class="type">int</span> num[];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> pos,<span class="type">int</span> last/...,<span class="type">int</span> flag,<span class="type">int</span> lead)</span></span>&#123; </span><br><span class="line">	<span class="type">int</span> ans=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(pos==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>; <span class="comment">//递归终点</span></span><br><span class="line">	<span class="keyword">if</span>(!lead&amp;&amp;!flag&amp;&amp;dp[pos][]!=<span class="number">-1</span>) <span class="keyword">return</span> dp[pos][]; <span class="comment">//记忆化</span></span><br><span class="line">	<span class="type">int</span> max_num=flag?num[pos]:<span class="number">9</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;=max_num;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(...) <span class="keyword">continue</span>;    <span class="comment">//不满足题目</span></span><br><span class="line">		ans+=<span class="built_in">dfs</span>(pos<span class="number">-1</span>,last/...,flag&amp;&amp;i==num[pos],i==<span class="number">0</span>&amp;&amp;lead);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(!lead&amp;&amp;!flag) dp[pos][]=ans;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>来解释下代码的一些小点
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi><mi>a</mi><mi>s</mi><mi>t</mi><mi mathvariant="normal">/</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">last/...</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">a</span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span><span class="mord">/</span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span></span></span></span> 用于记录有关题意的信息，比如有时候要求相邻数是否满足某条件，就要求记录此消息，有时会用来记录其他信息</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mi>o</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">pos</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">p</span><span class="mord mathnormal">o</span><span class="mord mathnormal">s</span></span></span></span> 用于记录当前数位位置</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mi>l</mi><mi>a</mi><mi>g</mi></mrow><annotation encoding="application/x-tex">flag</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span></span></span></span> 用于记录这一位枚举是否受范围限制</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi><mi>e</mi><mi>a</mi><mi>d</mi></mrow><annotation encoding="application/x-tex">lead</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">e</span><span class="mord mathnormal">a</span><span class="mord mathnormal">d</span></span></span></span> 用于记录是否是有前导零</li>
+</ul>
+</li>
+</ul>
+<h1 id="例题"><a class="markdownIt-Anchor" href="#例题"></a> 例题</h1>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2602">洛谷 P2602</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4999">洛谷 P4999</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2657">洛谷 P2657</a></li>
+</ul>
+
+        
+      </div>
+
+         
     </div>
     
-    
-      
-      
-        
-        <div class="year-line">
-            <div class="year-num">2024</div>
-            <div class="dot-wrapper">
-                <div class="dot"></div>
-            </div>
-            <div class="article-count">5 articles</div>
-        </div>
-      
-      <a class="archive-article-link" href="/2024/11/22/number_dp/" title="数位dp">
-        <div class="date">11-22</div>
-        <div class="line">
-            <div class="dot"></div>
-        </div>
-        <div class="title">
-            <div class="title-inner">
-                
-                    数位dp
-                
-            </div>
-        </div>
-        <div class="tags">
-            #algorithm #dp
-        </div>
-      </a>
-    
-      
-      
-      <a class="archive-article-link" href="/2024/11/20/DFS_BFS/" title="深度优先搜索&&广度优先搜索">
-        <div class="date">11-20</div>
-        <div class="line">
-            <div class="dot"></div>
-        </div>
-        <div class="title">
-            <div class="title-inner">
-                
-                    深度优先搜索&&广度优先搜索
-                
-            </div>
-        </div>
-        <div class="tags">
-            #algorithm
-        </div>
-      </a>
-    
-      
-      
-      <a class="archive-article-link" href="/2024/11/19/save_graph/" title="存图">
-        <div class="date">11-19</div>
-        <div class="line">
-            <div class="dot"></div>
-        </div>
-        <div class="title">
-            <div class="title-inner">
-                
-                    存图
-                
-            </div>
-        </div>
-        <div class="tags">
-            #graph
-        </div>
-      </a>
-    
-      
-      
-      <a class="archive-article-link" href="/2024/11/18/Slide_Windows/" title="滑动窗口">
-        <div class="date">11-18</div>
-        <div class="line">
-            <div class="dot"></div>
-        </div>
-        <div class="title">
-            <div class="title-inner">
-                
-                    滑动窗口
-                
-            </div>
-        </div>
-        <div class="tags">
-            
-        </div>
-      </a>
-    
-      
-      
-      <a class="archive-article-link" href="/2024/11/18/backpack/" title="背包问题">
-        <div class="date">11-18</div>
-        <div class="line">
-            <div class="dot"></div>
-        </div>
-        <div class="title">
-            <div class="title-inner">
-                
-                    背包问题
-                
-            </div>
-        </div>
-        <div class="tags">
-            #algorithm #dp
-        </div>
-      </a>
-    
+     
   </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left  disabled "
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2024/11/20/DFS_BFS/"
+      title="深度优先搜索&&广度优先搜索"
+     >
+
+    <p class="title-text">
+      
+        深度优先搜索&amp;&amp;广度优先搜索
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+
+
+
+
     </div>
     <div id="footer-wrapper">
       <footer id="footer">

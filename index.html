@@ -179,6 +179,88 @@
    
 
 
+<article id="post-number_dp" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2024/11/22/number_dp/">数位dp</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2024-11-21T16:00:00.000Z" itemprop="datePublished">2024-11-22</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            714 words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dp/" rel="tag">dp</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            
+               内容
+
+数位DP就是一些形如：在区间 L−RL-RL−R 中有多少满足某条件的数 之类的问题
+如果我们对每一个数进行检验，在题目范围太大时，明显时会超时的，那怎么办
+这时候我们可以运用递归的记忆化搜索的思想，去一位一位处理，大大降低复杂度
+
+ 实现
+
+我们主要用递归函数去实现，如下
+
+123456789101112131415int dp[pos][];int num[];int dfs(int pos,int last/...,int flag,int lead)&#123; 	int ans=0;	if(pos==0) return 1; //递归终点	if(!lead&amp;&amp;!flag&amp;&amp;dp[pos][]!=-1) return dp[pos][]; //记忆化	int max_num=flag?num[pos]:9;	for(int i=0;i&lt;=max_num;i++)&#123;		if(...) continue;    //不满足题目		ans+=dfs(pos-1,last/...,flag&amp;&amp;i==num[...
+            
+          </div>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  non-pic  "
+      
+      href="/2024/11/22/number_dp/" 
+    >
+       
+      <i class="fa-solid fa-angle-right non-pic"></i>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+
+
+
+
+
+   
+
+
 <article id="post-DFS_BFS" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
    
   <div class="article-inner">
