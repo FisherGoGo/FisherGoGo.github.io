@@ -281,25 +281,20 @@
 <nav id="article-nav">
   <a class="article-nav-btn left "
     
-      href="/2024/11/19/save_graph/"
-      title="存图"
+      href="/2024/11/18/backpack/"
+      title="背包问题"
      >
     <i class="fa-solid fa-angle-left"></i>
     <p class="title-text">
       
-        存图
+        背包问题
         
     </p>
   </a>
-  <a class="article-nav-btn right "
-    
-      href="/2024/11/18/backpack/"
-      title="背包问题"
+  <a class="article-nav-btn right  disabled "
      >
 
     <p class="title-text">
-      
-        背包问题
         
     </p>
     <i class="fa-solid fa-angle-right"></i>
@@ -311,8 +306,39 @@
 </article>
 
 
+  
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <div id="comment-card" class="comment-card">
+    <div class="main-title-bar">
+      <div class="main-title-dot"></div>
+      <div class="main-title">Comments </div>
+    </div>
+    <div id="vcomments"></div>
+  </div>
+  <script>
+      new Valine({"enable":true,"appId":null,"appKey":null,"placeholder":"Just go go","pageSize":10,"highlight":true,"serverURLs":null,"el":"#vcomments"});
+  </script>
 
 
+
+  <script src="https://cdn.staticfile.org/twikoo/1.6.26/twikoo.all.min.js"></script>
+  <div id="comment-card" class="comment-card">
+    <div class="main-title-bar">
+      <div class="main-title-dot"></div>
+      <div class="main-title">Comments </div>
+    </div>
+    <div id="tcomment"></div>
+  </div>
+  <script>
+      twikoo.init({
+          envId: '',
+          el: '#tcomment',
+          region: '',
+          path: 'location.pathname',
+          lang: '',
+      })
+  </script>
+  
 
     </div>
     <div id="footer-wrapper">
