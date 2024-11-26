@@ -165,7 +165,7 @@
   <div class="widget-wrap">
     <div class="widget">
       <h3 class="widget-title">Tags</h3>
-      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/dp/" rel="tag">dp</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/graph/" rel="tag">graph</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/stl/" rel="tag">stl</a></li></ul>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/DS/" rel="tag">DS</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/dp/" rel="tag">dp</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/graph/" rel="tag">graph</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/stl/" rel="tag">stl</a></li></ul>
     </div>
   </div>
 
@@ -176,6 +176,101 @@
     </div>
     <div id="content-body">
       
+   
+
+
+<article id="post-Binary_Search_Tree" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2024/11/26/Binary_Search_Tree/">二叉搜索树</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2024-11-25T16:00:00.000Z" itemprop="datePublished">2024-11-26</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            2.3k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DS/" rel="tag">DS</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            
+               介绍
+
+二叉搜索树是一种二叉树的数据结构，它满足以下特点：
+
+空树是一颗二叉搜索树
+其左子树上的所有节点的权值都小于根节点，右子树上的所有节点的权值都小于根节点
+符合上一个条件的树，其子树也为二叉搜索树
+
+
+
+ 功能
+
+二叉搜索树可以实现诸如 插入 删除 查询最大/最小值 查询排名 查询第k大值…
+
+以下代码是我对 oi-wiki中用指针写法我讨厌指针的改写法，没有实际运行过，所以无法保证正确性，建议去看Fhq Treap部分
+
+
+定义  1234567891011121314struct Tree&#123;	int l,r;	int val;	int size;	int count;&#125;t[maxn];int cnt,root;int newnode(int val)&#123;	tree[++cnt].val=val;	tree[cnt].size=1;	tree[cnt].count=1;	return cnt;&#125;
+
+插入
+
+每插入一个值，从根节点开始，如果比这个节点小，进去左子树，否则进右子树，如果进入的子树为空，则新建节点并放入此处
+
+  1234...
+            
+          </div>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  non-pic  "
+      
+      href="/2024/11/26/Binary_Search_Tree/" 
+    >
+       
+      <i class="fa-solid fa-angle-right non-pic"></i>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+
+
+
+
+
    
 
 
