@@ -21,6 +21,7 @@ pnpm-debug.log*
 .DS_Store
 
 .vercel
+output/
 
 package-lock.json
 bun.lockb

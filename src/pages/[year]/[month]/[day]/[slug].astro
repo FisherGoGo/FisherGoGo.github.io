@@ -1,0 +1,22 @@
+---
+import { getSortedPosts } from "@utils/content-utils";
+import { getPostUrlBySlug } from "@utils/url-utils";
+
+export async function getStaticPaths() {
+	const posts = await getSortedPosts();
+	return posts.map((entry) => {
+		const published = entry.data.published;
+		return {
+			params: {
+				year: String(published.getFullYear()),
+				month: String(published.getMonth() + 1).padStart(2, "0"),
+				day: String(published.getDate()).padStart(2, "0"),
+				slug: entry.data.legacySlug || entry.slug,
+			},
+			props: { target: getPostUrlBySlug(entry.slug) },
+		};
+	});
+}
+
+return Astro.redirect(Astro.props.target, 301);
+---

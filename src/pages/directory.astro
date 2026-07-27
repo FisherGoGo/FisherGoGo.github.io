@@ -1,0 +1,82 @@
+---
+import MainGridLayout from "@layouts/MainGridLayout.astro";
+import { getSortedPosts } from "@utils/content-utils";
+import { formatDateToYYYYMMDD } from "@utils/date-utils";
+import { getCategoryUrl, getPostUrlBySlug } from "@utils/url-utils";
+import { Icon } from "astro-icon/components";
+
+const posts = await getSortedPosts();
+const categoryOrder = [
+	"竞赛题解",
+	"算法技巧",
+	"数据结构",
+	"图论",
+	"动态规划",
+	"字符串",
+	"数学",
+	"编程基础",
+	"随笔记录",
+];
+
+const grouped = new Map<string, typeof posts>();
+for (const post of posts) {
+	const category = post.data.category || "未分类";
+	const entries = grouped.get(category) || [];
+	entries.push(post);
+	grouped.set(category, entries);
+}
+
+const categories = [...grouped.entries()].sort(([a], [b]) => {
+	const indexA = categoryOrder.indexOf(a);
+	const indexB = categoryOrder.indexOf(b);
+	if (indexA === -1 && indexB === -1) return a.localeCompare(b, "zh-CN");
+	if (indexA === -1) return 1;
+	if (indexB === -1) return -1;
+	return indexA - indexB;
+});
+---
+
+<MainGridLayout title="文章目录" description="按主题浏览 Fisher 的全部文章">
+	<div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative mb-4">
+		<div class="card-base z-10 px-6 md:px-9 py-7 relative w-full">
+			<div class="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-7">
+				<div>
+					<div class="text-3xl font-bold text-90 mb-2">文章目录</div>
+					<p class="text-50">沿着分类快速找到算法笔记、竞赛题解和随笔。</p>
+				</div>
+				<div class="text-sm text-50 rounded-xl bg-black/5 dark:bg-white/5 px-3 py-2 w-fit">
+					{posts.length} 篇文章 · {categories.length} 个分类
+				</div>
+			</div>
+
+			<div class="grid gap-5">
+				{categories.map(([category, entries]) => (
+					<section class="rounded-2xl border border-black/5 dark:border-white/10 bg-black/[0.025] dark:bg-white/[0.025] overflow-hidden">
+						<div class="flex items-center justify-between gap-3 px-4 md:px-5 py-3 border-b border-dashed border-black/10 dark:border-white/10">
+							<a href={getCategoryUrl(category)} class="font-bold text-lg text-90 hover:text-[var(--primary)] transition flex items-center gap-2">
+								<span class="w-2 h-2 rounded-full bg-[var(--primary)]"></span>
+								{category}
+							</a>
+							<span class="text-xs text-50">{entries.length} 篇</span>
+						</div>
+						<ul class="divide-y divide-dashed divide-black/5 dark:divide-white/10">
+							{entries.map((entry) => (
+								<li>
+									<a href={getPostUrlBySlug(entry.slug)} class="group flex items-center justify-between gap-4 px-4 md:px-5 py-3 hover:bg-black/[0.035] dark:hover:bg-white/[0.035] transition">
+										<span class="text-75 group-hover:text-[var(--primary)] transition min-w-0 truncate">
+											{entry.data.title}
+										</span>
+										<span class="flex items-center gap-2 shrink-0 text-xs text-30">
+											<time datetime={formatDateToYYYYMMDD(entry.data.published)}>{formatDateToYYYYMMDD(entry.data.published)}</time>
+											<Icon name="material-symbols:chevron-right-rounded" class="text-lg group-hover:translate-x-0.5 transition" />
+										</span>
+									</a>
+								</li>
+							))}
+						</ul>
+					</section>
+				))}
+			</div>
+		</div>
+	</div>
+</MainGridLayout>

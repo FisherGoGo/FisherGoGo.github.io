@@ -1,9 +1,11 @@
-# About
-This is the demo site for [Fuwari](https://github.com/saicaca/fuwari).
+# 关于
 
-::github{repo="saicaca/fuwari"}
+你好，我是 Fisher。
 
-> ### Sources of images used in this site
-> - [Unsplash](https://unsplash.com/)
-> - [星と少女](https://www.pixiv.net/artworks/108916539) by [Stella](https://www.pixiv.net/users/93273965)
-> - [Rabbit - v1.4 Showcase](https://civitai.com/posts/586908) by [Rabbit_YourMajesty](https://civitai.com/user/Rabbit_YourMajesty)
+这里主要记录 ACM 算法学习、竞赛题解、数据结构、数学知识，以及偶尔出现的旅行和阅读随笔。
+
+- [文章目录](/directory/)
+- [分类与标签归档](/archive/)
+- [GitHub](https://github.com/FisherGoGo)
+
+本站基于 [Fuwari](https://github.com/saicaca/fuwari) 与 Astro 构建。
