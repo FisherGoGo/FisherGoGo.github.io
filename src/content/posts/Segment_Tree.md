@@ -385,11 +385,53 @@ $$f_{i-1,1}=\min\left(\begin{cases}f_{i-1,0}\;(s_{i}=2)\\\\ \inf\;(s_{i}\ne 2)\e
 	- 若我们从 $f_{i-1,0}$ 转移时，说明前边已经得到一个与空集匹配的字符串，如果这时候来一个 $2$ ，那么就可以与 $2$ 匹配，否则不存在答案
 	- 若我们从 $f_{i-1,1}$ 转移时，说明前边已经得到一个与 $2$ 匹配的字符串，若来一个 $0$ ，则违反了定义，说明我们要删去，否则不用删
 - 依次类推，我们得到剩下的式子
-$$\begin{cases}f_{i,2}=\min\left(\begin{cases}f_{i-1,2}+1\;(s_{i}=1)\\\\ f_{i-1,2}\;(s_{i}\ne1)\end{cases},\begin{cases}f_{i-1,1}\;(s_{i}=0)\\\\\inf\;(s_{i}\ne0)\end{cases}\right)\\\\ \\
-f_{i,3}=\min\left(\begin{cases}f_{i-1,3}+1\;(s_{i}=7\lor s_{i}=6)\\\\ f_{i-1,3}\;(s_{i}\ne7\land s_{i}\ne 6)\end{cases},\begin{cases}f_{i-1,2}\;(s_{i}=1)\\\\\inf\;(s_{i}\ne1)\end{cases}\right)\\\\ \\
-f_{i,4}=\min\left(\begin{cases}f_{i-1,4}+1\;(s_{i}=6)\\\\ f_{i-1,4}\;(s_{i}\ne6)\end{cases},\begin{cases}f_{i-1,3}\;(s_{i}=7)\\\\\inf\;(s_{i}\ne7)\end{cases}\right)\\\\\end{cases}$$
+$$
+\begin{cases}
+f_{i,2}=\min\left(
+\begin{cases}
+f_{i-1,2}+1 & (s_i=1) \\
+f_{i-1,2} & (s_i\ne1)
+\end{cases},
+\begin{cases}
+f_{i-1,1} & (s_i=0) \\
+\inf & (s_i\ne0)
+\end{cases}
+\right) \\
+f_{i,3}=\min\left(
+\begin{cases}
+f_{i-1,3}+1 & (s_i=7\lor s_i=6) \\
+f_{i-1,3} & (s_i\ne7\land s_i\ne6)
+\end{cases},
+\begin{cases}
+f_{i-1,2} & (s_i=1) \\
+\inf & (s_i\ne1)
+\end{cases}
+\right) \\
+f_{i,4}=\min\left(
+\begin{cases}
+f_{i-1,4}+1 & (s_i=6) \\
+f_{i-1,4} & (s_i\ne6)
+\end{cases},
+\begin{cases}
+f_{i-1,3} & (s_i=7) \\
+\inf & (s_i\ne7)
+\end{cases}
+\right)
+\end{cases}
+$$
 - 其中边界为 $f_{0}=[0,\inf,\inf,\inf,\inf]$ 
 - 这里就用矩阵优化DP，可以得到
-$$\begin{cases}\vec{v_{i}}=[f_{i,0},f_{i,1},f_{i,2},f_{i,3},f_{i,4}]\\\\ \vec{v_{i}}=\vec{v_{i-1}}\times M_{i}\\\\  
-M_{i}= \begin{vmatrix}(s_{i}=2)?1:0&(s_{i}=2)?0:\inf&\inf&\inf&\inf\\\inf&(s_{i}=0)?1:0&(s_{i}=0)?0:\inf&\inf&\inf\\\inf&\inf&\inf&(s_{i}=7\lor s_{i}=6)?1:0&(s_{i}=7)?0:\inf\\\inf&\inf&\inf&\inf&(s_{i}=6)?1:0\end{vmatrix}  \end{cases}$$
+$$
+\begin{aligned}
+\vec{v_i} &= [f_{i,0},f_{i,1},f_{i,2},f_{i,3},f_{i,4}] \\
+\vec{v_i} &= \vec{v_{i-1}}\times M_i \\
+M_i &=
+\begin{pmatrix}
+(s_i=2)?1:0 & (s_i=2)?0:\inf & \inf & \inf & \inf \\
+\inf & (s_i=0)?1:0 & (s_i=0)?0:\inf & \inf & \inf \\
+\inf & \inf & \inf & (s_i=7\lor s_i=6)?1:0 & (s_i=7)?0:\inf \\
+\inf & \inf & \inf & \inf & (s_i=6)?1:0
+\end{pmatrix}
+\end{aligned}
+$$
 - 用线段树维护区间矩阵即可，这里用的也是 Min-Plus 矩阵乘法，其实可以发现 $M_{l}\cdot M_{l+1}\cdot \ldots\cdot M_{r}$ 第一列的最后一项既答案，[附上记录](https://codeforces.com/contest/750/submission/331212462)

@@ -12,6 +12,11 @@ const sourceCandidates = [
 const sourceDir = sourceCandidates.find((candidate) => fs.existsSync(candidate));
 const targetDir = path.join(projectRoot, "src", "content", "posts");
 const distDir = path.join(projectRoot, "dist");
+const intentionallyCorrectedBodies = new Set([
+	"Combination.md",
+	"Segment_Tree.md",
+	"Summer_Problem.md",
+]);
 
 if (!sourceDir) throw new Error("Hexo source directory not found");
 
@@ -52,8 +57,11 @@ for (const file of sourceFiles) {
 	}
 }
 
-if (changedBodies.length > 0) {
-	throw new Error(`Article bodies changed: ${changedBodies.join(", ")}`);
+const unexpectedBodyChanges = changedBodies.filter(
+	(file) => !intentionallyCorrectedBodies.has(file),
+);
+if (unexpectedBodyChanges.length > 0) {
+	throw new Error(`Article bodies changed unexpectedly: ${unexpectedBodyChanges.join(", ")}`);
 }
 
 const requiredFiles = [
@@ -93,9 +101,13 @@ function walkHtml(directory) {
 }
 
 const brokenLinks = new Set();
+const katexErrors = [];
 let checkedLinks = 0;
 for (const htmlPath of walkHtml(distDir)) {
 	const html = fs.readFileSync(htmlPath, "utf8");
+	if (html.includes('class="katex-error"')) {
+		katexErrors.push(path.relative(distDir, htmlPath));
+	}
 	for (const match of html.matchAll(/\bhref="([^"]+)"/g)) {
 		const href = match[1].replace(/&amp;/g, "&");
 		if (!href.startsWith("/") || href.startsWith("//")) continue;
@@ -118,14 +130,18 @@ for (const htmlPath of walkHtml(distDir)) {
 if (brokenLinks.size > 0) {
 	throw new Error(`Broken internal links:\n${[...brokenLinks].join("\n")}`);
 }
+if (katexErrors.length > 0) {
+	throw new Error(`KaTeX render errors:\n${katexErrors.join("\n")}`);
+}
 
 console.log(
 	JSON.stringify(
 		{
 			articles: sourceFiles.length,
-			changedBodies: changedBodies.length,
+			intentionalBodyCorrections: changedBodies.length,
 			directory: true,
 			katex: true,
+			katexErrors: katexErrors.length,
 			legacyRedirect: true,
 			checkedInternalLinks: checkedLinks,
 			brokenInternalLinks: brokenLinks.size,
