@@ -115,6 +115,9 @@ $$
 
 ### 参考代码
 
+<details>
+<summary>查看 AC 代码：A.cpp</summary>
+
 ```cpp title="A.cpp"
 #include<bits/stdc++.h>
 using namespace std;
@@ -379,6 +382,8 @@ int main()
 }
 ```
 
+</details>
+
 ---
 
 ## Problem B. 喝饮料
@@ -513,6 +518,9 @@ $$
 
 ### 参考代码
 
+<details>
+<summary>查看 AC 代码：B.cpp</summary>
+
 ```cpp title="B.cpp"
 #include <bits/stdc++.h>
 using namespace std;
@@ -592,6 +600,8 @@ int main()
     return 0;
 }
 ```
+
+</details>
 
 ---
 
@@ -714,6 +724,9 @@ $$
 空间复杂度为 $O(S^2)$。
 
 ### 参考代码
+
+<details>
+<summary>查看 AC 代码：F.cpp</summary>
 
 ```cpp title="F.cpp"
 #include<bits/stdc++.h>
@@ -852,6 +865,8 @@ int main(){
 }
 ```
 
+</details>
+
 ---
 
 ## Problem I. 交换大师（Swap Master）
@@ -979,6 +994,9 @@ $$
 - 空间复杂度：$O(n)$。
 
 ### 参考代码
+
+<details>
+<summary>查看 AC 代码：I.cpp</summary>
 
 ```cpp title="I.cpp"
 #include <bits/stdc++.h>
@@ -1123,6 +1141,8 @@ int main()
 }
 ```
 
+</details>
+
 ---
 
 ## Problem J. 带祖先限制的树重构
@@ -1217,6 +1237,9 @@ $$
 空间复杂度为 $O(n+q)$。
 
 ### 参考代码
+
+<details>
+<summary>查看 AC 代码：J.cpp</summary>
 
 ```cpp title="J.cpp"
 #include <bits/stdc++.h>
@@ -1327,6 +1350,8 @@ int main()
 }
 ```
 
+</details>
+
 ---
 
 ## Problem K. 路口转向
@@ -1377,6 +1402,9 @@ $$
 每个中间点只计算一次叉积。单组数据的时间复杂度为 $O(n)$，保存所有点时空间复杂度为 $O(n)$。
 
 ### 参考代码
+
+<details>
+<summary>查看 AC 代码：K.cpp</summary>
 
 ```cpp title="K.cpp"
 #include <bits/stdc++.h>
@@ -1437,6 +1465,8 @@ int main()
     return 0;
 }
 ```
+
+</details>
 
 ---
 
@@ -1509,6 +1539,9 @@ $$
 空间复杂度为 $O(N)$。
 
 ### 参考代码
+
+<details>
+<summary>查看 AC 代码：L.cpp</summary>
 
 ```cpp title="L.cpp"
 #include<bits/stdc++.h>
@@ -1624,3 +1657,5 @@ int main(){
     return 0;
 }
 ```
+
+</details>

@@ -112,6 +112,9 @@ $$
 
 ### 参考代码
 
+<details>
+<summary>查看 AC 代码：C.cpp</summary>
+
 ```cpp title="C.cpp"
 #include<bits/stdc++.h>
 #define f(i,a,b) for(int i=a;i<=b;i++)
@@ -221,6 +224,8 @@ signed main(){
 }
 ```
 
+</details>
+
 ---
 
 ## Problem F. 排列生成
@@ -294,6 +299,9 @@ $$
 
 ### 参考代码
 
+<details>
+<summary>查看 AC 代码：F.cpp</summary>
+
 ```cpp title="F.cpp"
 #include<bits/stdc++.h>
 #define f(i,a,b) for(int i=a;i<=b;i++)
@@ -355,6 +363,8 @@ signed main(){
     return 0;
 }
 ```
+
+</details>
 
 ---
 
@@ -418,6 +428,9 @@ $$
 
 ### 参考代码
 
+<details>
+<summary>查看 AC 代码：G.cpp</summary>
+
 ```cpp title="G.cpp"
 #include <bits/stdc++.h>
 using namespace std;
@@ -459,6 +472,8 @@ int main()
     return 0;
 }
 ```
+
+</details>
 
 ---
 
@@ -546,6 +561,9 @@ $$
 之后每组询问为 $O(1)$。状态表空间复杂度为 $O(100\times100)$。
 
 ### 参考代码
+
+<details>
+<summary>查看 AC 代码：H.cpp</summary>
 
 ```cpp title="H.cpp"
 #include<bits/stdc++.h>
@@ -712,6 +730,8 @@ int main(){
 }
 ```
 
+</details>
+
 ---
 
 ## Problem J. 梭哈
@@ -791,6 +811,9 @@ $$
 每组数据最多比较 $44\times43$ 对牌，单次牌型判断为常数时间；总时间复杂度为 $O(52^2)$，空间复杂度为 $O(52)$。
 
 ### 参考代码
+
+<details>
+<summary>查看 AC 代码：J.cpp</summary>
 
 ```cpp title="J.cpp"
 #include <bits/stdc++.h>
@@ -1151,6 +1174,8 @@ int main()
 }
 ```
 
+</details>
+
 ---
 
 ## Problem L. 子串的子串
@@ -1265,6 +1290,9 @@ $$
 空间复杂度为 $O(L+Occ+n+q)$。该实现是按实际出现次数计费的。
 
 ### 参考代码
+
+<details>
+<summary>查看 AC 代码：L.cpp</summary>
 
 ```cpp title="L.cpp"
 #include<bits/stdc++.h>
@@ -1529,3 +1557,5 @@ int main()
     }
 }
 ```
+
+</details>

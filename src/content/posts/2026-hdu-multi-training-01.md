@@ -93,6 +93,9 @@ $$
 
 ### 参考代码
 
+<details>
+<summary>查看 AC 代码：1004.cpp</summary>
+
 ```cpp title="1004.cpp"
 #include<bits/stdc++.h>
 #define f(i,a,b) for(int i=a;i<=b;i++)
@@ -195,6 +198,8 @@ int main(){
 }
 ```
 
+</details>
+
 ---
 
 ## 1005. 摩卡数
@@ -250,6 +255,9 @@ $$
 - 空间复杂度：$O(L)$。
 
 ### 参考代码
+
+<details>
+<summary>查看 AC 代码：1005.cpp</summary>
 
 ```cpp title="1005.cpp"
 #include <bits/stdc++.h>
@@ -324,6 +332,8 @@ int main()
 }
 ```
 
+</details>
+
 ---
 
 ## 1006. 开关灯
@@ -397,6 +407,9 @@ $$
 - 空间复杂度：$O(N)$。
 
 ### 参考代码
+
+<details>
+<summary>查看 AC 代码：1006.cpp</summary>
 
 ```cpp title="1006.cpp"
 #include <bits/stdc++.h>
@@ -479,6 +492,8 @@ int main()
     }
 }
 ```
+
+</details>
 
 ---
 
@@ -581,6 +596,9 @@ $$
 - 空间复杂度：$O(n)$。
 
 ### 参考代码
+
+<details>
+<summary>查看 AC 代码：1008.cpp</summary>
 
 ```cpp title="1008.cpp"
 #include <bits/stdc++.h>
@@ -790,6 +808,8 @@ int main()
 }
 ```
 
+</details>
+
 ---
 
 ## 1010. 游戏
@@ -869,6 +889,9 @@ $$
 - 空间复杂度：$O(n)$（累计和也可以压缩到 $O(1)$）。
 
 ### 参考代码
+
+<details>
+<summary>查看 AC 代码：1010.cpp</summary>
 
 ```cpp title="1010.cpp"
 #include <bits/stdc++.h>
@@ -1007,3 +1030,5 @@ int main()
     }
 }
 ```
+
+</details>

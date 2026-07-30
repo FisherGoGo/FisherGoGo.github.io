@@ -126,6 +126,9 @@ $$
 
 ### 参考代码
 
+<details>
+<summary>查看 AC 代码：1001.cpp</summary>
+
 ```cpp title="1001.cpp"
 #include<bits/stdc++.h>
 using namespace std;
@@ -371,6 +374,8 @@ int main()
 }
 ```
 
+</details>
+
 ---
 
 ## 1002. 表达式 2
@@ -488,6 +493,9 @@ $$
 空间复杂度为 $O(n)$。
 
 ### 参考代码
+
+<details>
+<summary>查看 AC 代码：1002.cpp</summary>
 
 ```cpp title="1002.cpp"
 #include <bits/stdc++.h>
@@ -1108,6 +1116,8 @@ int main()
 }
 ```
 
+</details>
+
 ---
 
 ## 1003. 张力
@@ -1220,6 +1230,9 @@ $$
 所有 Trie 节点的 DP 状态总数为 $O(n\log A)$，额外 ST 表空间为 $O(n\log n)$。
 
 ### 参考代码
+
+<details>
+<summary>查看 AC 代码：1003.cpp</summary>
 
 ```cpp title="1003.cpp"
 #include<bits/stdc++.h>
@@ -1373,6 +1386,8 @@ int main(){
 }
 ```
 
+</details>
+
 ---
 
 ## 1004. 坪测鸡
@@ -1472,6 +1487,9 @@ $$
 - 空间复杂度：$O(n+m+k)$。
 
 ### 参考代码
+
+<details>
+<summary>查看 AC 代码：1004.cpp</summary>
 
 ```cpp title="1004.cpp"
 #include<bits/stdc++.h>
@@ -1623,6 +1641,8 @@ int main(){
 }
 ```
 
+</details>
+
 ---
 
 ## 1005. 减数游戏 2
@@ -1751,6 +1771,9 @@ $$
 - 空间复杂度：$O(n)$。
 
 ### 参考代码
+
+<details>
+<summary>查看 AC 代码：1005.cpp</summary>
 
 ```cpp title="1005.cpp"
 #include <bits/stdc++.h>
@@ -1913,6 +1936,8 @@ int main()
 }
 ```
 
+</details>
+
 ---
 
 ## 1006. 合成大 hdu
@@ -2073,6 +2098,9 @@ $$
 
 ### 参考代码
 
+<details>
+<summary>查看 AC 代码：1006.cpp</summary>
+
 ```cpp title="1006.cpp"
 #include <bits/stdc++.h>
 using namespace std;
@@ -2152,6 +2180,8 @@ int main()
     return 0;
 }
 ```
+
+</details>
 
 ---
 
@@ -2283,6 +2313,9 @@ $$
 - 空间复杂度：$O(n\log n)$。
 
 ### 参考代码
+
+<details>
+<summary>查看 AC 代码：1007.cpp</summary>
 
 ```cpp title="1007.cpp"
 #include<bits/stdc++.h>
@@ -2430,6 +2463,8 @@ int main(){
 }
 ```
 
+</details>
+
 ---
 
 ## 1008. 最遥远的距离
@@ -2513,6 +2548,9 @@ $$
 - 空间复杂度：$O(n)$。
 
 ### 参考代码
+
+<details>
+<summary>查看 AC 代码：1008.cpp</summary>
 
 ```cpp title="1008.cpp"
 #include<bits/stdc++.h>
@@ -2678,6 +2716,8 @@ int main(){
 }
 ```
 
+</details>
+
 ---
 
 ## 1010. 幻灵战队 2
@@ -2787,6 +2827,9 @@ $$
 - 空间复杂度：$O(n)$。
 
 ### 参考代码
+
+<details>
+<summary>查看 AC 代码：1010.cpp</summary>
 
 ```cpp title="1010.cpp"
 #include<bits/stdc++.h>
@@ -2965,6 +3008,8 @@ int main(){
 }
 ```
 
+</details>
+
 ---
 
 ## 1011. 键盘杀手
@@ -3071,6 +3116,9 @@ $$
 
 ### 参考代码
 
+<details>
+<summary>查看 AC 代码：1011.cpp</summary>
+
 ```cpp title="1011.cpp"
 #include<bits/stdc++.h>
 #define f(i,a,b) for(int i=a;i<=b;i++)
@@ -3125,3 +3173,5 @@ int main(){
     return 0;
 }
 ```
+
+</details>

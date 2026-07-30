@@ -106,6 +106,9 @@ $$
 
 ### 参考代码
 
+<details>
+<summary>查看 AC 代码：B.cpp</summary>
+
 ```cpp title="B.cpp"
 #include<bits/stdc++.h>
 #define f(i,a,b) for(int i=a;i<=b;i++)
@@ -197,6 +200,8 @@ int main(){
     return 0;
 }
 ```
+
+</details>
 
 ---
 
@@ -353,6 +358,9 @@ $$
 
 ### 参考代码
 
+<details>
+<summary>查看 AC 代码：F.cpp</summary>
+
 ```cpp title="F.cpp"
 #include<bits/stdc++.h>
 #define f(i,a,b) for(int i=a;i<=b;i++)
@@ -441,6 +449,8 @@ int main(){
     return 0;
 }
 ```
+
+</details>
 
 ---
 
@@ -614,6 +624,9 @@ $$
 
 ### 参考代码
 
+<details>
+<summary>查看 AC 代码：G.cpp</summary>
+
 ```cpp title="G.cpp"
 #include <bits/stdc++.h>
 using namespace std;
@@ -786,6 +799,8 @@ int main()
 }
 ```
 
+</details>
+
 ---
 
 ## Problem H. 超空间配对（Hyperspace Pairing）
@@ -936,6 +951,9 @@ $$
 
 ### 参考代码
 
+<details>
+<summary>查看 AC 代码：H.cpp</summary>
+
 ```cpp title="H.cpp"
 #include<bits/stdc++.h>
 #define f(i,a,b) for(int i=a;i<=b;i++)
@@ -1060,6 +1078,8 @@ int main(){
     return 0;
 }
 ```
+
+</details>
 
 ---
 
@@ -1196,6 +1216,9 @@ $$
 除预处理距离和原图外，压缩图相关结构占用 $O(k^2)$ 空间。
 
 ### 参考代码
+
+<details>
+<summary>查看 AC 代码：K.cpp</summary>
 
 ```cpp title="K.cpp"
 #include<bits/stdc++.h>
@@ -1367,6 +1390,8 @@ int main(){
 }
 ```
 
+</details>
+
 ---
 
 ## Problem L. 懒得打乱（Lazy Shuffling）
@@ -1476,6 +1501,9 @@ $$
 四个主 DP 数组的空间复杂度为 $O(2^n)$，两张半区间贡献表占用 $O(n2^{n/2})$ 空间。
 
 ### 参考代码
+
+<details>
+<summary>查看 AC 代码：L.cpp</summary>
 
 ```cpp title="L.cpp"
 #include <bits/stdc++.h>
@@ -1653,3 +1681,5 @@ int main()
     return 0;
 }
 ```
+
+</details>
