@@ -1,6 +1,6 @@
 ---
 import { getSortedPosts } from "@utils/content-utils";
-import { getPostUrlBySlug } from "@utils/url-utils";
+import { getPostUrl } from "@utils/url-utils";
 
 export async function getStaticPaths() {
 	const posts = await getSortedPosts();
@@ -11,9 +11,9 @@ export async function getStaticPaths() {
 				year: String(published.getFullYear()),
 				month: String(published.getMonth() + 1).padStart(2, "0"),
 				day: String(published.getDate()).padStart(2, "0"),
-				slug: entry.data.legacySlug || entry.slug,
+				slug: entry.data.legacySlug || entry.id.replace(/\.md$/i, ""),
 			},
-			props: { target: getPostUrlBySlug(entry.slug) },
+			props: { target: getPostUrl(entry) },
 		};
 	});
 }

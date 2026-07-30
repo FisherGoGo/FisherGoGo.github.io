@@ -8,4 +8,4 @@
 - [分类与标签归档](/archive/)
 - [GitHub](https://github.com/FisherGoGo)
 
-本站基于 [Fuwari](https://github.com/saicaca/fuwari) 与 Astro 构建。
+本站基于 [Mizuki](https://github.com/LyraVoid/Mizuki) 与 Astro 构建。
