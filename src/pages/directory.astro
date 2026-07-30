@@ -2,7 +2,7 @@
 import MainGridLayout from "@layouts/MainGridLayout.astro";
 import { getSortedPosts } from "@utils/content-utils";
 import { formatDateToYYYYMMDD } from "@utils/date-utils";
-import { getCategoryUrl, getPostUrlBySlug } from "@utils/url-utils";
+import { getCategoryUrl, getPostUrl } from "@utils/url-utils";
 import { Icon } from "astro-icon/components";
 
 const posts = await getSortedPosts();
@@ -62,7 +62,7 @@ const categories = [...grouped.entries()].sort(([a], [b]) => {
 						<ul class="divide-y divide-dashed divide-black/5 dark:divide-white/10">
 							{entries.map((entry) => (
 								<li>
-									<a href={getPostUrlBySlug(entry.slug)} class="group flex items-center justify-between gap-4 px-4 md:px-5 py-3 hover:bg-black/[0.035] dark:hover:bg-white/[0.035] transition">
+									<a href={getPostUrl(entry)} class="group flex items-center justify-between gap-4 px-4 md:px-5 py-3 hover:bg-black/[0.035] dark:hover:bg-white/[0.035] transition">
 										<span class="text-75 group-hover:text-[var(--primary)] transition min-w-0 truncate">
 											{entry.data.title}
 										</span>
