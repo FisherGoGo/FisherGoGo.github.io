@@ -37,9 +37,9 @@
 /* 导入霞鹜文楷字体 */
 @font-face {
   font-family: "LXGW WenKai";
-  src: url("/assets/font/LXGWWenKai-Regular.ttf") format("truetype");
+  src: url("/assets/font/LXGWWenKai-Medium.ttf") format("truetype");
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   font-display: swap;
 }
 
