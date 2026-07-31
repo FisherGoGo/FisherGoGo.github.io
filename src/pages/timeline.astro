@@ -60,6 +60,10 @@ const filterTabs = [
 	})),
 ];
 
+const sortedTimelineData = [...timelineData].sort((a, b) =>
+	b.startDate.localeCompare(a.startDate),
+);
+
 const title = i18n(I18nKey.timeline);
 const subtitle = i18n(I18nKey.timelineSubtitle);
 ---
@@ -87,7 +91,7 @@ const subtitle = i18n(I18nKey.timelineSubtitle);
 			</div>
 
 			<div id="timeline-list" class="timeline-list">
-				{timelineData.map((item) => <TimelineCard item={item} />)}
+				{sortedTimelineData.map((item) => <TimelineCard item={item} />)}
 			</div>
 
 			<div id="no-results" class="hidden text-center py-16">
