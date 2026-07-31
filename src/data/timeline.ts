@@ -1,186 +1,220 @@
 import type { TimelineItem } from "../components/features/timeline/types";
 
+type Medal = "金牌" | "银牌" | "铜牌" | "铁牌";
+type CompetitionSeries = "ICPC" | "CCPC";
+type CompetitionStage = "邀请赛" | "区域赛" | "EC-Final" | "Final";
+
+interface Competition {
+	id: string;
+	year: number;
+	month: number;
+	series: CompetitionSeries;
+	stage: CompetitionStage;
+	medal: Medal;
+	location: string;
+}
+
+const medalColors: Record<Medal, string> = {
+	金牌: "#D97706",
+	银牌: "#64748B",
+	铜牌: "#B45309",
+	铁牌: "#475569",
+};
+
+const createCompetition = ({
+	id,
+	year,
+	month,
+	series,
+	stage,
+	medal,
+	location,
+}: Competition): TimelineItem => {
+	const competitionName = `${series} ${stage}（${location}）`;
+
+	return {
+		id,
+		title: `${competitionName} · ${medal}`,
+		description: `参加 ${year} ${competitionName}，获得${medal}。`,
+		type: "achievement",
+		startDate: `${year}-${String(month).padStart(2, "0")}-01`,
+		location,
+		skills: ["程序设计竞赛", medal],
+		icon: "material-symbols:emoji-events",
+		color: medalColors[medal],
+		featured: medal === "金牌",
+		current: false,
+		showDuration: false,
+	};
+};
+
 export const timelineData: TimelineItem[] = [
 	{
-		id: "current-study",
-		title: "Studying Computer Science and Technology",
+		id: "cuc-digital-media-technology",
+		title: "进入中国传媒大学",
 		description:
-			"Currently studying Computer Science and Technology, focusing on web development and software engineering.",
+			"2024 年进入中国传媒大学数字媒体技术专业学习。大学期间继续钻研算法与程序设计，并把学习过程整理成博客笔记。",
 		type: "education",
-		startDate: "2022-09-01",
-		location: "Beijing",
-		organization: "Beijing Institute of Technology",
-		skills: ["Java", "Python", "JavaScript", "HTML/CSS", "MySQL"],
-		achievements: [
-			"Current GPA: 3.6/4.0",
-			"Completed data structures and algorithms course project",
-			"Participated in multiple course project developments",
-		],
+		startDate: "2024-09-01",
+		location: "北京",
+		organization: "中国传媒大学",
+		position: "数字媒体技术",
+		skills: ["数字媒体技术", "C++", "算法与数据结构"],
 		icon: "material-symbols:school",
-		color: "#059669",
+		color: "#2563EB",
 		featured: true,
 	},
+	createCompetition({
+		id: "2026-icpc-shenyang-invitational",
+		year: 2026,
+		month: 7,
+		series: "ICPC",
+		stage: "邀请赛",
+		medal: "金牌",
+		location: "沈阳",
+	}),
 	{
-		id: "mizuki-blog-project",
-		title: "Mizuki Personal Blog Project",
+		id: "mizuki-blog-migration",
+		title: "重构个人博客",
 		description:
-			"A personal blog website developed using the Astro framework as a practical project for learning frontend technologies.",
+			"将原有笔记迁移到 Mizuki，重新整理站点结构，并修复 LaTeX 显示、中文字体和文章阅读体验。",
 		type: "project",
-		startDate: "2024-06-01",
-		endDate: "2024-08-01",
-		skills: ["Astro", "TypeScript", "Tailwind CSS", "Git"],
-		achievements: [
-			"Mastered modern frontend development tech stack",
-			"Learned responsive design and user experience optimization",
-			"Completed the full process from design to deployment",
-		],
+		startDate: "2026-07-27",
+		endDate: "2026-07-30",
+		skills: ["Astro", "TypeScript", "Markdown", "LaTeX"],
 		links: [
 			{
-				name: "GitHub Repository",
-				url: "https://github.com/example/mizuki-blog",
+				name: "GitHub 仓库",
+				url: "https://github.com/FisherGoGo/FisherGoGo.github.io",
 				type: "project",
 			},
+		],
+		icon: "material-symbols:web",
+		color: "#7C3AED",
+		featured: true,
+	},
+	createCompetition({
+		id: "2026-ccpc-henan-invitational",
+		year: 2026,
+		month: 6,
+		series: "CCPC",
+		stage: "邀请赛",
+		medal: "银牌",
+		location: "河南",
+	}),
+	createCompetition({
+		id: "2026-icpc-xian-invitational",
+		year: 2026,
+		month: 5,
+		series: "ICPC",
+		stage: "邀请赛",
+		medal: "银牌",
+		location: "西安",
+	}),
+	createCompetition({
+		id: "2026-icpc-jiangxi-invitational",
+		year: 2026,
+		month: 5,
+		series: "ICPC",
+		stage: "邀请赛",
+		medal: "金牌",
+		location: "江西",
+	}),
+	createCompetition({
+		id: "2026-ccpc-zhengzhou-final",
+		year: 2026,
+		month: 4,
+		series: "CCPC",
+		stage: "Final",
+		medal: "铁牌",
+		location: "郑州",
+	}),
+	createCompetition({
+		id: "2026-icpc-hangzhou-ec-final",
+		year: 2026,
+		month: 2,
+		series: "ICPC",
+		stage: "EC-Final",
+		medal: "铁牌",
+		location: "杭州",
+	}),
+	createCompetition({
+		id: "2025-icpc-shenyang-regional",
+		year: 2025,
+		month: 11,
+		series: "ICPC",
+		stage: "区域赛",
+		medal: "银牌",
+		location: "沈阳",
+	}),
+	createCompetition({
+		id: "2025-icpc-chengdu-regional",
+		year: 2025,
+		month: 10,
+		series: "ICPC",
+		stage: "区域赛",
+		medal: "铜牌",
+		location: "成都",
+	}),
+	{
+		id: "2025-ccpc-henan-invitational",
+		title: "CCPC 邀请赛（河南） · 参赛记录",
+		description:
+			"参加 2025 CCPC 邀请赛（河南），和队友前往郑州参赛，也把这次比赛和旅途记录成了一篇游记。",
+		type: "achievement",
+		startDate: "2025-06-01",
+		endDate: "2025-06-02",
+		location: "河南郑州",
+		skills: ["C++", "算法竞赛", "团队协作"],
+		links: [
 			{
-				name: "Live Demo",
-				url: "https://mizuki-demo.example.com",
+				name: "比赛游记",
+				url: "/posts/2025_ccpc_henan/",
+				type: "other",
+			},
+		],
+		icon: "material-symbols:emoji-events",
+		color: "#EA580C",
+	},
+	createCompetition({
+		id: "2025-icpc-xian-invitational",
+		year: 2025,
+		month: 5,
+		series: "ICPC",
+		stage: "邀请赛",
+		medal: "铜牌",
+		location: "西安",
+	}),
+	{
+		id: "personal-blog-start",
+		title: "开始记录自己的算法与生活",
+		description:
+			"建立个人博客，用来沉淀算法学习笔记、比赛题解，也偶尔记录读书与生活。",
+		type: "project",
+		startDate: "2024-11-18",
+		skills: ["Markdown", "算法笔记", "内容整理"],
+		links: [
+			{
+				name: "博客首页",
+				url: "/",
 				type: "website",
 			},
 		],
-		icon: "material-symbols:code",
-		color: "#7C3AED",
-		featured: true,
-	},
-	{
-		id: "summer-internship-2024",
-		title: "Frontend Development Intern",
-		description:
-			"Summer internship at an internet company, participating in frontend development of web applications.",
-		type: "work",
-		startDate: "2024-07-01",
-		endDate: "2024-08-31",
-		location: "Beijing",
-		organization: "TechStart Internet Company",
-		position: "Frontend Development Intern",
-		skills: ["React", "JavaScript", "CSS3", "Git", "Figma"],
-		achievements: [
-			"Completed user interface component development",
-			"Learned team collaboration and code standards",
-			"Received outstanding internship performance certificate",
-		],
-		icon: "material-symbols:work",
-		color: "#DC2626",
-		featured: true,
-	},
-	{
-		id: "web-development-course",
-		title: "Completed Web Development Online Course",
-		description:
-			"Completed a full-stack web development online course, systematically learning frontend and backend development technologies.",
-		type: "achievement",
-		startDate: "2024-01-15",
-		endDate: "2024-05-30",
-		organization: "Mooc Website",
-		skills: ["HTML", "CSS", "JavaScript", "Node.js", "Express"],
-		achievements: [
-			"Received course completion certificate",
-			"Completed 5 practical projects",
-			"Mastered full-stack development fundamentals",
-		],
-		links: [
-			{
-				name: "Course Certificate",
-				url: "https://certificates.example.com/web-dev",
-				type: "certificate",
-			},
-		],
-		icon: "material-symbols:verified",
+		icon: "material-symbols:edit-note",
 		color: "#059669",
 	},
 	{
-		id: "student-management-system",
-		title: "Student Management System Course Project",
+		id: "sustech-affiliated-high-school",
+		title: "进入南方科技大学附属中学",
 		description:
-			"Final project for the database course, developed a complete student information management system.",
-		type: "project",
-		startDate: "2023-11-01",
-		endDate: "2023-12-15",
-		skills: ["Java", "MySQL", "Swing", "JDBC"],
-		achievements: [
-			"Received excellent course project grade",
-			"Implemented complete CRUD functionality",
-			"Learned database design and optimization",
-		],
-		icon: "material-symbols:database",
-		color: "#EA580C",
-	},
-	{
-		id: "programming-contest",
-		title: "University Programming Contest",
-		description:
-			"Participated in a programming contest held by the university, improving algorithm and programming skills.",
-		type: "achievement",
-		startDate: "2023-10-20",
-		location: "Beijing Institute of Technology",
-		organization: "School of Computer Science",
-		skills: ["C++", "Algorithms", "Data Structures"],
-		achievements: [
-			"Won third prize in university contest",
-			"Improved algorithmic thinking ability",
-			"Strengthened programming fundamentals",
-		],
-		icon: "material-symbols:emoji-events",
-		color: "#7C3AED",
-	},
-	{
-		id: "part-time-tutor",
-		title: "Part-time Programming Tutor",
-		description:
-			"Provided programming tutoring for high school students, helping them learn Python basics.",
-		type: "work",
-		startDate: "2023-09-01",
-		endDate: "2024-01-31",
-		position: "Programming Tutor",
-		skills: ["Python", "Teaching", "Communication"],
-		achievements: [
-			"Helped 3 students master Python basics",
-			"Improved expression and communication skills",
-			"Gained teaching experience",
-		],
-		icon: "material-symbols:school",
-		color: "#059669",
-	},
-	{
-		id: "high-school-graduation",
-		title: "High School Graduation",
-		description:
-			"Graduated from high school with excellent grades and was admitted to the Computer Science and Technology program at Beijing Institute of Technology.",
+			"2021 年进入南方科技大学附属中学，在深圳完成高中阶段的学习。",
 		type: "education",
-		startDate: "2019-09-01",
-		endDate: "2022-06-30",
-		location: "Jinan, Shandong",
-		organization: "No.1 High School of Jinan",
-		achievements: [
-			"College entrance exam score: 620",
-			"Received municipal model student award",
-			"Won provincial second prize in math competition",
-		],
+		startDate: "2021-09-01",
+		endDate: "2024-06-30",
+		location: "广东深圳",
+		organization: "南方科技大学附属中学",
 		icon: "material-symbols:school",
-		color: "#2563EB",
-	},
-	{
-		id: "first-programming-experience",
-		title: "First Programming Experience",
-		description:
-			"First encountered programming in high school IT class, started learning Python basic syntax.",
-		type: "education",
-		startDate: "2021-03-01",
-		skills: ["Python", "Basic Programming Concepts"],
-		achievements: [
-			'Completed first "Hello World" program',
-			"Learned basic loops and conditional statements",
-			"Developed interest in programming",
-		],
-		icon: "material-symbols:code",
-		color: "#7C3AED",
+		color: "#0891B2",
+		featured: true,
 	},
 ];

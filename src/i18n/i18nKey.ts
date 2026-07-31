@@ -197,6 +197,7 @@ enum I18nKey {
 	timelinePresent = "timelinePresent",
 	timelineLocation = "timelineLocation",
 	timelineDescription = "timelineDescription",
+	timelineDays = "timelineDays",
 	timelineMonths = "timelineMonths",
 	timelineYears = "timelineYears",
 	timelineTotal = "timelineTotal",

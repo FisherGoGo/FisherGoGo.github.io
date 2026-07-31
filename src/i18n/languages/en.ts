@@ -256,6 +256,7 @@ export const en: Translation = {
 	[Key.timelinePresent]: "Present",
 	[Key.timelineLocation]: "Location",
 	[Key.timelineDescription]: "Detailed Description",
+	[Key.timelineDays]: "days",
 	[Key.timelineMonths]: "months",
 	[Key.timelineYears]: "years",
 	[Key.timelineTotal]: "Total",

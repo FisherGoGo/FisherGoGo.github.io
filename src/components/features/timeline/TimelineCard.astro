@@ -5,7 +5,8 @@ import type { TimelineCardProps } from "./types";
 
 const { item } = Astro.props as TimelineCardProps;
 
-const isCurrent = !item.endDate;
+const isCurrent = item.current ?? !item.endDate;
+const isPointEvent = !item.endDate && item.current === false;
 
 const getTypeIcon = (type: string) => {
 	switch (type) {
@@ -62,8 +63,15 @@ const getDuration = (startDate: string, endDate?: string) => {
 	const start = new Date(startDate);
 	const end = endDate ? new Date(endDate) : new Date();
 	const diffTime = Math.abs(end.getTime() - start.getTime());
+	const diffDays = Math.max(
+		1,
+		Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1,
+	);
 	const diffMonths = Math.ceil(diffTime / (1000 * 60 * 60 * 24 * 30));
 
+	if (diffDays < 30) {
+		return `${diffDays} ${i18n(I18nKey.timelineDays)}`;
+	}
 	if (diffMonths < 12) {
 		return `${diffMonths} ${i18n(I18nKey.timelineMonths)}`;
 	}
@@ -77,8 +85,11 @@ const getDuration = (startDate: string, endDate?: string) => {
 
 const icon = item.icon || getTypeIcon(item.type);
 const typeText = getTypeText(item.type);
-const dateRange = `${formatDate(item.startDate)} - ${item.endDate ? formatDate(item.endDate) : i18n(I18nKey.timelinePresent)}`;
+const dateRange = isPointEvent
+	? formatDate(item.startDate)
+	: `${formatDate(item.startDate)} - ${item.endDate ? formatDate(item.endDate) : i18n(I18nKey.timelinePresent)}`;
 const duration = getDuration(item.startDate, item.endDate);
+const showDuration = item.showDuration ?? !isPointEvent;
 const nodeColor = isCurrent ? "#22c55e" : item.color || "var(--primary)";
 const hasLinks = item.links && item.links.length > 0;
 ---
@@ -203,13 +214,18 @@ const hasLinks = item.links && item.links.length > 0;
 						height="14"></iconify-icon>
 					{dateRange}
 				</span>
-				<span class="flex items-center gap-1">
-					<iconify-icon
-						icon="material-symbols:schedule-outline"
-						width="14"
-						height="14"></iconify-icon>
-					{duration}
-				</span>
+				{
+					showDuration && (
+						<span class="flex items-center gap-1">
+							<iconify-icon
+								icon="material-symbols:schedule-outline"
+								width="14"
+								height="14"
+							/>
+							{duration}
+						</span>
+					)
+				}
 				{
 					item.location && (
 						<span class="flex items-center gap-1">

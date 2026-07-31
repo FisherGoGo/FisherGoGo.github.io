@@ -20,6 +20,8 @@ export interface TimelineItem {
 	icon?: string;
 	color?: string;
 	featured?: boolean;
+	current?: boolean;
+	showDuration?: boolean;
 }
 
 export interface TimelineCardProps {

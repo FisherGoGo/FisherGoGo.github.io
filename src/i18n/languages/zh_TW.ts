@@ -240,6 +240,7 @@ export const zh_TW: Translation = {
 	[Key.timelinePresent]: "至今",
 	[Key.timelineLocation]: "地點",
 	[Key.timelineDescription]: "詳細描述",
+	[Key.timelineDays]: "天",
 	[Key.timelineMonths]: "個月",
 	[Key.timelineYears]: "年",
 	[Key.timelineTotal]: "總計",

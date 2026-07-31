@@ -258,6 +258,7 @@ export const ja: Translation = {
 	[Key.timelinePresent]: "現在",
 	[Key.timelineLocation]: "場所",
 	[Key.timelineDescription]: "詳細な説明",
+	[Key.timelineDays]: "日",
 	[Key.timelineMonths]: "ヶ月",
 	[Key.timelineYears]: "年",
 	[Key.timelineTotal]: "合計",

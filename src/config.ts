@@ -34,7 +34,7 @@ export const siteConfig: SiteConfig = {
 	lang: SITE_LANG,
 
 	themeColor: {
-		hue: 60, // 主题色的默认色相，范围从 0 到 360。例如：红色：0，青色：200，蓝绿色：250，粉色：345
+		hue: 220, // 与横幅的冰蓝青色调保持一致
 		fixed: false, // 对访问者隐藏主题色选择器
 	},
 
@@ -45,7 +45,7 @@ export const siteConfig: SiteConfig = {
 		friends: false, // 友链页面开关
 		projects: false, // 项目页面开关
 		skills: false, // 技能页面开关
-		timeline: false, // 时间线页面开关
+		timeline: true, // 时间线页面开关
 		albums: false, // 相册页面开关
 		devices: false, // 设备页面开关
 	},
@@ -124,8 +124,8 @@ export const siteConfig: SiteConfig = {
 	banner: {
 		// 支持单张图片或图片数组，当数组长度 > 1 时自动启用轮播
 		src: {
-			desktop: ["/assets/back.jpg"], // 桌面横幅图片
-			mobile: ["/assets/back.jpg"], // 移动横幅图片
+			desktop: ["/assets/daniya-banner.webp"], // 桌面横幅图片
+			mobile: ["/assets/daniya-banner-mobile.webp"], // 移动横幅图片
 		}, // 使用本地横幅图片
 
 		position: "center", // 等同于 object-position，仅支持 'top', 'center', 'bottom'。默认为 'center'
@@ -201,7 +201,7 @@ export const siteConfig: SiteConfig = {
 			// 英文字体 - 优先级最高
 			// 指定为英文字体则无论字体包含多大范围，都只会保留 ASCII 字符子集
 			fontFamily: "ZenMaruGothic-Medium",
-			fontWeight: "400",
+			fontWeight: "500",
 			localFonts: ["ZenMaruGothic-Medium.ttf"],
 			enableCompress: true, // 启用字体子集优化，减少字体文件大小
 		},
@@ -227,8 +227,8 @@ export const siteConfig: SiteConfig = {
 };
 export const fullscreenWallpaperConfig: FullscreenWallpaperConfig = {
 	src: {
-		desktop: ["/assets/back.jpg"], // 桌面横幅图片
-		mobile: ["/assets/back.jpg"], // 移动横幅图片
+		desktop: ["/assets/daniya-banner.webp"], // 桌面横幅图片
+		mobile: ["/assets/daniya-banner-mobile.webp"], // 移动横幅图片
 	}, // 使用本地横幅图片
 	position: "center", // 壁纸位置，等同于 object-position
 	carousel: {
@@ -249,6 +249,7 @@ export const navBarConfig: NavBarConfig = {
 			icon: "material-symbols:menu-book",
 		},
 		LinkPreset.Archive,
+		LinkPreset.Timeline,
 		LinkPreset.About,
 		{
 			name: "GitHub",

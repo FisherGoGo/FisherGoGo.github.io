@@ -201,6 +201,7 @@ export const zh_CN: Translation = {
 	[Key.timelinePresent]: "至今",
 	[Key.timelineLocation]: "地点",
 	[Key.timelineDescription]: "详细描述",
+	[Key.timelineDays]: "天",
 	[Key.timelineMonths]: "个月",
 	[Key.timelineYears]: "年",
 	[Key.timelineTotal]: "总计",

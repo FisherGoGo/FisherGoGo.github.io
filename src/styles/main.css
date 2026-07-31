@@ -19,7 +19,7 @@
 
 /* Migrate from v3 config */
 @theme {
-  --font-sans: "Roboto", "sans-serif", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans: "ZenMaruGothic-Medium", "LXGW WenKai", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   --breakpoint-md: 768px;
   --breakpoint-lg: 1280px;
@@ -30,8 +30,11 @@
 @font-face {
   font-family: "ZenMaruGothic-Medium";
   src: url("/assets/font/ZenMaruGothic-Medium.ttf") format("truetype");
+  font-style: normal;
   font-weight: 500;
   font-display: swap;
+  /* 仅接管基础 ASCII，避免日文字体与中文字体逐字混排 */
+  unicode-range: U+0020-007E;
 }
 
 /* 导入霞鹜文楷字体 */
