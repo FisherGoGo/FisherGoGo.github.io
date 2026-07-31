@@ -1,0 +1,14 @@
+{
+	"title": "冬日随拍",
+	"hidden": false,
+	"description": "冬日里随手记录的生活片段。",
+	"date": "2025-01-19",
+	"location": "北京",
+	"tags": [
+		"2025",
+		"随拍",
+		"生活"
+	],
+	"layout": "masonry",
+	"columns": 3
+}

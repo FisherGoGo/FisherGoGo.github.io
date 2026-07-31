@@ -1,0 +1,14 @@
+{
+	"title": "天文台",
+	"hidden": false,
+	"description": "天文台之行与沿途风景。",
+	"date": "2025-08-24",
+	"location": "天文台",
+	"tags": [
+		"2025",
+		"旅行",
+		"记录"
+	],
+	"layout": "masonry",
+	"columns": 3
+}

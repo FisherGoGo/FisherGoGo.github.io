@@ -28,7 +28,11 @@ export async function scanAlbums(): Promise<AlbumGroup[]> {
 		}
 	}
 
-	return albums;
+	return albums.sort(
+		(a, b) =>
+			new Date(b.date).getTime() - new Date(a.date).getTime() ||
+			a.title.localeCompare(b.title, "zh-CN"),
+	);
 }
 
 async function processAlbumFolder(
@@ -106,7 +110,9 @@ async function processAlbumFolder(
 
 function scanPhotos(folderPath: string, albumId: string): Photo[] {
 	const photos: Photo[] = [];
-	const files = fs.readdirSync(folderPath);
+	const files = fs
+		.readdirSync(folderPath)
+		.sort(new Intl.Collator("zh-CN", { numeric: true }).compare);
 
 	const imageExtensions = [
 		".jpg",
