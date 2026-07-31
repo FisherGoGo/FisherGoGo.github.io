@@ -94,8 +94,8 @@ export const timelineData: TimelineItem[] = [
 		featured: true,
 	},
 	createCompetition({
-		id: "2026-ccpc-henan-invitational",
-		year: 2026,
+		id: "2025-ccpc-henan-invitational",
+		year: 2025,
 		month: 6,
 		series: "CCPC",
 		stage: "邀请赛",
@@ -156,26 +156,6 @@ export const timelineData: TimelineItem[] = [
 		medal: "铜牌",
 		location: "成都",
 	}),
-	{
-		id: "2025-ccpc-henan-invitational",
-		title: "CCPC 邀请赛（河南） · 参赛记录",
-		description:
-			"参加 2025 CCPC 邀请赛（河南），和队友前往郑州参赛，也把这次比赛和旅途记录成了一篇游记。",
-		type: "achievement",
-		startDate: "2025-06-01",
-		endDate: "2025-06-02",
-		location: "河南郑州",
-		skills: ["C++", "算法竞赛", "团队协作"],
-		links: [
-			{
-				name: "比赛游记",
-				url: "/posts/2025_ccpc_henan/",
-				type: "other",
-			},
-		],
-		icon: "material-symbols:emoji-events",
-		color: "#EA580C",
-	},
 	createCompetition({
 		id: "2025-icpc-xian-invitational",
 		year: 2025,
