@@ -1,0 +1,14 @@
+{
+	"title": "国家博物馆",
+	"hidden": false,
+	"description": "国家博物馆参观记录。",
+	"date": "2024-10-13",
+	"location": "北京 · 国家博物馆",
+	"tags": [
+		"2024",
+		"北京",
+		"博物馆"
+	],
+	"layout": "masonry",
+	"columns": 3
+}

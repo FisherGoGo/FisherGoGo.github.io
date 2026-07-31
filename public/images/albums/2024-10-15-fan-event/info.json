@@ -1,0 +1,14 @@
+{
+	"title": "追星日记",
+	"hidden": false,
+	"description": "一场属于现场与热爱的记录。",
+	"date": "2024-10-15",
+	"location": "北京",
+	"tags": [
+		"2024",
+		"现场",
+		"记录"
+	],
+	"layout": "masonry",
+	"columns": 3
+}
