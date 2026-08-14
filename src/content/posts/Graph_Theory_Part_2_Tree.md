@@ -41,7 +41,7 @@ void dfs(int u,int pre){
 
 </details>
 
-有一个主要的性质，一颗子树在 DFS 序中一定占据一段连续区间，既若点 $u$ 的 DFS 序为 $dfn_{u}$ 那么其子树的区间为 $[dfn_{u},dfn_{u}+siz_{u}-1]$ ，当然我们也可以记录在 DFS 中一个节点的进入时间和离开时间来找其子树区间，如果设进入时间为 $tin_{u}$ 和处理完整一颗子树时间为 $tout_{u}$ ，那么 $u$ 的子树区间为 $[tin_{u},tout_{u}]$
+有一个主要的性质，一颗子树在 DFS 序中一定占据一段连续区间，即若点 $u$ 的 DFS 序为 $dfn_{u}$ ，那么其子树的区间为 $[dfn_{u},dfn_{u}+siz_{u}-1]$ 。当然我们也可以记录在 DFS 中一个节点的进入时间和离开时间来找其子树区间，如果设进入时间为 $tin_{u}$ ，处理完整棵子树时的时间戳为 $tout_{u}$ ，那么 $u$ 的子树区间为 $[tin_{u},tout_{u}]$
 
 因此关于一些子树信息的问题我们可以转移到 DFS 序上处理
 
@@ -101,7 +101,7 @@ int Len=maxDis;
 定义：删除某个节点及其相连的边后，会产生若干个连通块，让最大的连通块尽量小的点，就是树的重心
 
 若我们定义 $f(u)$ 表示删除 $u$ 后产生的最大的连通块大小
-$$f(u)=\max(n-siz[u],\max_{v是u儿子} siz[v])$$
+$$f(u)=\max(n-siz[u],\max_{v\in child(u)} siz[v])$$
 下边为 DFS 求树的重心
 
 <details>
@@ -141,7 +141,7 @@ void dfs(int u,int pre){
 
 $$w=LCA(u,v)$$
 衍生出距离树上距离公式
-$$dist(u,v)=depth[u]+depth[u]-2depth[LCA(u,v)]$$
+$$dist(u,v)=depth[u]+depth[v]-2\cdot depth[LCA(u,v)]$$
 接下来看怎么求 LCA
 
 ### 倍增法求第 $k$ 级祖先
@@ -155,6 +155,7 @@ $$fa[u][j]=fa[fa[u][j-1]][j-1]$$
 ```cpp
 void dfs(int u,int pre){
 	fa[u][0]=pre;
+	dep[u]=dep[pre]+1;
 
 	for(int j=1;j<=LOG;j++){
 		fa[u][j]=fa[fa[u][j-1]][j-1];
@@ -263,14 +264,14 @@ void dfs(int u,int pre){
 		if(v==pre) continue;
 		dfs(v,u);
 		euler[++tot]=u;
-		depEuler[tot]=u;
+		depEuler[tot]=dep[u];
 	}
 }
 ```
 
 </details>
 
-若 $first[u]<first[v]$ ，那么欧拉序中 $[first[u],first[v]]$ 中深度最小的节点就是 LCA ，因为在 DFS 中过程中第一次到达 $u$ 后，想要到达 $v$ ，必须沿着树上唯一路径走，那么这个路径上位置最低点就是 LCA
+若 $first[u]<first[v]$ ，那么欧拉序中 $[first[u],first[v]]$ 中深度最小的节点就是 LCA ，因为在 DFS 过程中第一次到达 $u$ 后，想要到达 $v$ ，必须沿着树上唯一路径走，那么这个路径上深度最小的点就是 LCA
 
 那么我们用 ST 表维护区间深度最小节点即可
 
@@ -280,7 +281,7 @@ void dfs(int u,int pre){
 ```cpp
 int st[N][32];
 void init_STLCA(){
-	for(int i=1;i<=tot;i++) st[i][0]=euler[i]
+	for(int i=1;i<=tot;i++) st[i][0]=euler[i];
 	for(int j=1;(1<<j)<=tot;j++){
 		for(int i=1;i+(1<<j)-1<=tot;i++){
 			int a=st[i][j-1];
@@ -348,4 +349,6 @@ struct OfflineLCA {
 
 点差分：若要在路径 $(u,v)$ 上每个节点加 $1$ ，令 $w=LCA(u,v)$ ，那么 $diff[u],diff[v]$ 都加 $1$ ，而 $diff[w],diff[fa[w]]$ 都减 $1$
 
-边差分：若要在路径 $(u,v)$ 上每个边加 $1$ ，令 $w=LCA(u,v)$ ，那么 $diff[u],diff[v]$ 都加 $1$ ，而 $diff[w]$ 减 $2$ ，而 $diff[v]$ 表示 $v-fa[v]$ 这条边
+边差分：若要在路径 $(u,v)$ 上每条边加 $1$ ，令 $w=LCA(u,v)$ ，那么 $diff[u],diff[v]$ 都加 $1$ ，而 $diff[w]$ 减 $2$
+
+完成所有修改后，从叶子向根累加差分值。点差分中，累加后的 $diff[v]$ 表示节点 $v$ 的答案；边差分中，累加后的 $diff[v]$ 表示 $v-fa[v]$ 这条边的答案

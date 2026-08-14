@@ -24,8 +24,8 @@ struct DSU{
 	vector<int> fa;
 
 	DSU(int _n){
-		fa.assign(n+1,0);
-		for(int i=1;i<=n;i++) fa[i]=i;
+		fa.assign(_n+1,0);
+		for(int i=1;i<=_n;i++) fa[i]=i;
 	}
 
 	int find(int x){//此为路径压缩版本
@@ -38,13 +38,14 @@ struct DSU{
 		int fy=find(y);
 
 		if(fx==fy) return false;
-		fa[fx]=fy return true;
+		fa[fx]=fy;
+		return true;
 	}
 
 	bool same(int x,int y){
 		return find(x)==find(y);
 	}
-}
+};
 ```
 
 </details>
@@ -81,7 +82,7 @@ bool merge(int x,int y){
 
 	if(siz[fx]<siz[fy]) swap(fx,fy);
 	siz[fx]+=siz[fy];
-	fa[fy]=x;
+	fa[fy]=fx;
 
 	return true;
 }
@@ -100,8 +101,8 @@ bool merge(int x,int y){
 比如：若 $x$ 与 $y$ 在同一个集合里，那么他们的差是多少，即回答 $val[x]-val[y]$
 
 我们定义：
-$$dis[x]=val[x]-dis[fa[x]]$$
-若 $x$ 与 $y$ 处于同一个集合，他们的差可以表示为：
+$$dis[x]=val[x]-val[fa[x]]$$
+调用 `find(x)` 和 `find(y)` 后，$dis[x]$ 与 $dis[y]$ 都表示到同一个根 $z$ 的差，因此：
 $$dis[x]-dis[y]=val[x]-val[z]-val[y]+val[z]=val[x]-val[y]$$
 所以重点就是维护 $dis[x]$ ，先看看 `find` 怎么写
 
@@ -110,9 +111,9 @@ $$dis[x]-dis[y]=val[x]-val[z]-val[y]+val[z]=val[x]-val[y]$$
 
 ```cpp
 int find(int x){
-	if(fa[x]==x) return ;
+	if(fa[x]==x) return x;
 
-	int p=find(x);
+	int p=fa[x];
 	fa[x]=find(p);
 	dis[x]+=dis[p];
 
@@ -124,7 +125,7 @@ int find(int x){
 
 我们先保存旧父亲，这样子通过递归后，原来的父亲的权值就变成压缩后，相对于根的权值，所以再压缩后该点就变成相对于根的权值
 
-那么 `merge` 也需要重写，这里不做赘述，直接推导即可
+那么 `merge` 也需要重写。下面约定传入的限制为 $val[y]-val[x]=w$ ，直接推导即可
 
 <details>
   <summary>点击展开带权并查集 merge 代码</summary>
@@ -168,9 +169,9 @@ bool merge(int x, int y, long long w){
 
 # 可撤销并查集
 
-可撤销并查集支持的是允许我们将若干次最近的合并操作合并，让并查集恢复到之前的某个状态
+可撤销并查集允许我们撤销若干次最近的合并操作，让并查集恢复到之前的某个状态
 
-核心思想是记录修改历史，在普通的按大小合并中，被修改的有两个值 `fa[y]` 和 `siz[y]` ，所以我们可以存下修改前的信息，同时我们**不能进行路径压缩**
+核心思想是记录修改历史，在普通的按大小合并中，被修改的有两个值 `fa[y]` 和 `siz[x]` ，所以我们可以存下修改前的信息，同时我们**不能进行路径压缩**
 
 我们一般将操作压入栈中，然后通过退栈来进行撤消
 
@@ -259,7 +260,7 @@ struct RollbackDSU{
 
 对于此问题，我们可以离线处理
 
-一条边在 $s_{i}$ 时刻加入，在 $e_{i}$ 时刻删去，那么其实这条边作用的时间是 $[s_{i},e_{i}]$ 这个时间段，不难发现可以用线段树维护，但此时线段树维护的是时间，每个节点代表一段时间区间，我们可以把这个操作挂到节点上，然后递归求解状态即可，不难发现每个操作会被拆分为不超过 $O(\log q)$ 次
+一条边在 $s_{i}$ 时刻加入，在 $e_{i}$ 时刻删去，那么这条边作用的时间是 $[s_{i},e_{i}-1]$ 这个时间段；若直到操作结束都未删除，则作用到最后一个时刻。不难发现可以用线段树维护，但此时线段树维护的是时间，每个节点代表一段时间区间，我们可以把这个操作挂到节点上，然后递归求解状态即可，每个操作会被拆分为不超过 $O(\log q)$ 次
 
 我们只需要支持两种操作 `add` 和 `query` 即可，前者加入操作，后者查询状态
 

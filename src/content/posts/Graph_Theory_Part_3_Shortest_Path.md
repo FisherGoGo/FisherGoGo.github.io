@@ -104,7 +104,7 @@ int dis[N],vis[N];
 priority_queue <node,vector<node>,greater<node>> q;
 
 void Dij(){
-	for(int i=1;i<=n;i++) dis[i]=0x3f,vis[i]=0;
+	for(int i=1;i<=n;i++) dis[i]=0x3f3f3f3f,vis[i]=0;
 	dis[s]=0;
 	q.push({0,s});
 	while(!q.empty()){
@@ -172,15 +172,14 @@ struct Edge {
 	ll w;
 };
 ll dis[N][2];
-int now=0;
-
-void BellmanFord(int s){
+void BellmanFord(int s,int k){
 	for(int i=1;i<=n;i++) dis[i][0]=dis[i][1]=1e18;
+	int now=0;
 	dis[s][0]=0;
 
-	for(int i=1;i<n;i++){
+	for(int i=1;i<=k;i++){
 		bool flag=0;
-		for(int j=1;j<=n;j++) dis[j][now^1]=dis[i][now];
+		for(int j=1;j<=n;j++) dis[j][now^1]=dis[j][now];
 		for(auto [u,v,w]:edges){
 			if(dis[u][now]==1e18) continue;
 			if(dis[v][now^1]>dis[u][now]+w){
@@ -371,12 +370,12 @@ bool spfa(int s){
 
 # 最短路 DAG
 
-若边 $u \rightarrow v$ 满足 $dis[v]=dis[u]+w$ ，那么保留这条边，然后就可以得到一张 DAG ，随后就可以在这张 DAG 上做 DP ，如统计最短路条数等
+若边 $u \rightarrow v$ 满足 $dis[v]=dis[u]+w$ ，那么保留这条边，就可以得到最短路子图。当所有边权均为正时，边一定从较小的 $dis$ 指向较大的 $dis$ ，此时它是一张 DAG ，可以在上面做 DP ，如统计最短路条数等；若允许零权边，子图中可能存在零权环，需要先处理这些环，不能直接当作 DAG
 
-统计一个 $cnt[u]$ 表示到点 $u$ 的最短路数量，可以在 Dij 过程中顺手统计，若 $dis[v]=dis[u]+w$ 那么将路径数量累计上去，若 $dis[v]>dis[u]+w$ 那么将路径数量覆盖上去
+在上述 DAG 条件成立时，统计一个 $cnt[u]$ 表示到点 $u$ 的最短路数量，可以在 Dijkstra 过程中顺手统计：若 $dis[v]=dis[u]+w$ ，那么将路径数量累计上去；若 $dis[v]>dis[u]+w$ ，那么将路径数量覆盖上去
 
-若要统计点 $v$ 在多少条最短路上，答案为 $cnt_{s}[v]\times cnt_{t}[v]$
-若要统计边 $u \rightarrow v$ 在多少条最短路上，首先要求 $dis[v]=dis[u]+w(u,v)$ ，那么答案为 $cnt_{s}[u]\times cnt_{t}[v]$
+若要统计点 $v$ 在多少条 $s\rightarrow t$ 最短路上，还需满足 $dis_s[v]+dis_t[v]=dis_s[t]$ ，此时答案为 $cnt_{s}[v]\times cnt_{t}[v]$
+若要统计边 $u \rightarrow v$ 在多少条 $s\rightarrow t$ 最短路上，还需满足 $dis_s[u]+w(u,v)+dis_t[v]=dis_s[t]$ ，此时答案为 $cnt_{s}[u]\times cnt_{t}[v]$ 。其中 $dis_t$ 和 $cnt_t$ 需要从 $t$ 在反图上求出
 
 # 分层最短路
 
@@ -403,7 +402,7 @@ $$u \rightarrow v \quad w=c$$
 对于建边：
 
 1. 先是 $x_{v}-x_{u}\le c$ ，直接建 $u \rightarrow v,c$
-2. 然后 $x_{v}-x_{u}\ge c$ ，先转化为 $x_{u}-x_{v}\le c$ ，建 $v \rightarrow u,-c$
+2. 然后 $x_{v}-x_{u}\ge c$ ，先转化为 $x_{u}-x_{v}\le -c$ ，建 $v \rightarrow u,-c$
 3. 最后 $x_{v}-x_{u} = c$ ，变成 $x_{v}-x_{u}\le c$ 和 $x_{v}-x_{u}\ge c$ ，所以建两条边 $u \rightarrow v,c$ 和 $v \rightarrow u ,-c$
 
 如果建出来的图存在负环，说明无解，因为会得到某个点 $x_{k}\le x_{k}-c$ ，即 $x_{k}<x_{k}$ ，明显矛盾，如果只需要看有没有解，可以建立超级源点然后判负环即可，如果存在解，跑完最短路后让 $x_{i}=dis[i]$ 即可
@@ -425,11 +424,11 @@ $$\min(x_{v}-x_{u})\ge -dist(v,u)$$
 
 可以证明对于任意一条最短路，重新赋权后的值为 $w'(s,t)=w(s,t)+h[s]-h[t]$ ，对于固定了起点和终点的任意一条路径，都是原最短路加上一个固定的常数，不影响相对大小
 
-现在是怎么确定这个势函数，目的是 $w(u,v)+h[u]-h[v]\ge 0$ ，即 $h[v]\le h[u]+w(u,v)$ ，这和一直讲的松弛一样，所以令 $h[v]$ 到某个源点的最短距离，即可令条件成立
+现在是怎么确定这个势函数，目的是 $w(u,v)+h[u]-h[v]\ge 0$ ，即 $h[v]\le h[u]+w(u,v)$ ，这和一直讲的松弛一样，所以令 $h[v]$ 为某个源点到 $v$ 的最短距离，即可令条件成立
 
 所以建立超级源点 $S$ ，然后跑 BellmanFord ，那么 $h[v]=dist(S,v)$ ，同时也不能存在负环
 
-这样子得到的新边必定非负，若存在一条最短路 $S \rightarrow\ldots \rightarrow u \rightarrow v$ ，那么 $h[v]\le h[u]+w$ ，即 $w+h[u]-h[v]\ge 0$
+这样得到的新边必定非负，因为对每条边 $u \rightarrow v$ ，最短路的三角不等式都保证 $h[v]\le h[u]+w$ ，即 $w+h[u]-h[v]\ge 0$
 
 最后跑 $n$ 遍 Dij 即可
 
@@ -437,7 +436,7 @@ $$\min(x_{v}-x_{u})\ge -dist(v,u)$$
 
 先是最基础的次短路，在跑 Dij 时同时维护到这个点的最短路长度和次短路长度即可
 
-然后推广到 $k$ 短路，一个最简单的方法是允许每个节点从优先队列中被有效弹出 $k$ 次即可，这个方法是基于 Dij 的贪心成立的
+然后推广到 $k$ 短路，在边权非负时，一个最简单的方法是允许每个节点从优先队列中被有效弹出 $k$ 次，这个方法基于 Dijkstra 的贪心成立
 
 <details>
   <summary>点击展开 k 短路代码</summary>
@@ -496,7 +495,7 @@ void k_shortest(int s, int K){
 
 # A\* 最短路
 
-A\* 定义估价函数 $g(u)$ 表示当前这条路从 $s$ 走到 $u$ 已经花费的距离，在定义 $h(u)$ 表示对 $u \rightarrow t$ 剩余距离的估计，然后优先队列按照 $f(u)=g(u)+h(u)$ 从小往大进行扩展
+A\* 定义估价函数 $g(u)$ 表示当前这条路从 $s$ 走到 $u$ 已经花费的距离，再定义 $h(u)$ 表示对 $u \rightarrow t$ 剩余距离的估计，然后优先队列按照 $f(u)=g(u)+h(u)$ 从小往大进行扩展。下面的写法同样要求边权非负
 
 我们可以直接让 $h(u)=dist(u,t)$ ，那么 $f(u)=g(u)+dist(u,t)$ ，然后我们跑 Dij 的 k 短路即可
 
