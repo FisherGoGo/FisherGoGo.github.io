@@ -219,6 +219,7 @@ export interface NavBarLink {
 	name: string;
 	url: string;
 	external?: boolean;
+	noSwup?: boolean; // 禁用 Swup 过渡，用于独立布局页面
 	icon?: string; // 菜单项图标
 	children?: (NavBarLink | LinkPreset)[]; // 支持子菜单，可以是NavBarLink或LinkPreset
 }

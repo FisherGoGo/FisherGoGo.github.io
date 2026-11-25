@@ -251,13 +251,12 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Archive,
 		LinkPreset.Timeline,
 		LinkPreset.Albums,
-		LinkPreset.About,
 		{
-			name: "GitHub",
-			url: "https://github.com/FisherGoGo",
-			external: true,
-			icon: "fa7-brands:github",
+			name: "角色展柜",
+			url: "/showcase/",
+			icon: "material-symbols:collections-bookmark",
 		},
+		LinkPreset.About,
 	],
 };
 

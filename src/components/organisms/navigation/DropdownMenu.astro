@@ -74,6 +74,7 @@ const hasChildren = children.length > 0;
 										? "noopener noreferrer"
 										: null
 								}
+								data-no-swup={child.noSwup ? "" : null}
 								class="dropdown-item"
 								aria-label={child.name}
 							>
@@ -103,6 +104,7 @@ const hasChildren = children.length > 0;
 				href={link.external ? link.url : url(link.url)}
 				target={link.external ? "_blank" : null}
 				rel={link.external ? "noopener noreferrer" : null}
+				data-no-swup={link.noSwup ? "" : null}
 				class="btn-plain scale-animation rounded-lg h-11 font-bold w-11 lg:w-auto lg:px-5 active:scale-95 flex items-center justify-center lg:justify-start whitespace-nowrap"
 			>
 				{link.icon && (

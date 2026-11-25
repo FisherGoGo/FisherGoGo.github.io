@@ -1,0 +1,83 @@
+---
+import "@fontsource-variable/jetbrains-mono";
+
+import DaniyaMemorial from "@components/features/daniya/DaniyaMemorial.svelte";
+import { siteConfig } from "../config";
+
+const title = `达妮娅 · 自星海尽处 - ${siteConfig.title}`;
+const description =
+	"鸣潮共鸣者达妮娅（Denia）正计时纪念页：自 2026 年 5 月 21 日的告别以来，直到下次再见。";
+---
+
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link
+			rel="icon"
+			href="/favicon/favicon-light-32.png"
+			sizes="32x32"
+			media="(prefers-color-scheme: light)"
+		/>
+		<link
+			rel="icon"
+			href="/favicon/favicon-dark-32.png"
+			sizes="32x32"
+			media="(prefers-color-scheme: dark)"
+		/>
+		<!-- Editorial Typography: Noto Serif SC + Cormorant Garamond + Inter (含 Medium/SemiBold 字重适配浅底显色) -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@200;300;400;500;600&family=Noto+Serif+SC:wght@400;500;600&display=swap"
+			rel="stylesheet"
+		/>
+		<style is:global>
+			@font-face {
+				font-family: "ZenMaruGothic-Medium";
+				src: url("/assets/font/ZenMaruGothic-Medium.ttf") format("truetype");
+				font-style: normal;
+				font-weight: 500;
+				font-display: swap;
+				unicode-range: U+0020-007E;
+			}
+
+			@font-face {
+				font-family: "LXGW WenKai";
+				src: url("/assets/font/LXGWWenKai-Medium.ttf") format("truetype");
+				font-style: normal;
+				font-weight: 500;
+				font-display: swap;
+			}
+
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+			}
+
+			html,
+			body {
+				margin: 0;
+				padding: 0;
+				background: #fbf5f7;
+				color: #261820;
+				font-family:
+					"Inter",
+					"Noto Serif SC",
+					"LXGW WenKai",
+					system-ui,
+					-apple-system,
+					sans-serif;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+			}
+		</style>
+	</head>
+	<body>
+		<DaniyaMemorial client:load />
+	</body>
+</html>

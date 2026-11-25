@@ -1,0 +1,83 @@
+---
+import { FilterTabs } from "@components/atoms/filter-tabs";
+import { PageHeader } from "@components/features/page-header";
+import { CharacterShowcaseCard } from "@components/features/showcase";
+import MainGridLayout from "@layouts/MainGridLayout.astro";
+
+import { charactersData } from "../data/characters";
+
+const title = "角色展柜";
+const subtitle = "定格喜爱角色的故事、时间与回响";
+
+const works = [...new Set(charactersData.map((item) => item.work))];
+
+const filterTabs = [
+	{
+		value: "all",
+		label: "全部",
+		icon: "material-symbols:apps",
+		count: charactersData.length,
+	},
+	...works.map((work) => ({
+		value: work,
+		label: work,
+		icon: "material-symbols:auto-awesome",
+		count: charactersData.filter((item) => item.work === work).length,
+	})),
+];
+---
+
+<MainGridLayout title={title} description={subtitle}>
+	<script>
+		import("../scripts/right-sidebar-layout.js");
+		import { loadIconify } from "../utils/icon-loader";
+
+		loadIconify().catch((error) => {
+			console.error("Failed to load Iconify:", error);
+		});
+	</script>
+
+	<script is:inline src="/js/filter-tabs-handler.js"></script>
+
+	<div
+		class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32"
+	>
+		<div class="card-base z-10 px-6 sm:px-9 py-6 relative w-full">
+			<PageHeader title={title} subtitle={subtitle} />
+
+			{
+				works.length > 1 && (
+					<div class="mb-7">
+						<FilterTabs tabs={filterTabs} dataAttr="work" />
+					</div>
+				)
+			}
+
+			<div
+				id="showcase-grid"
+				class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start"
+			>
+				{
+					charactersData.map((character, idx) => (
+						<CharacterShowcaseCard
+							character={character}
+							index={idx}
+						/>
+					))
+				}
+			</div>
+
+			<div id="no-results" class="hidden text-center py-16">
+				<iconify-icon
+					icon="material-symbols:search-off-rounded"
+					width="64"
+					height="64"
+					class="text-black/15 dark:text-white/15 mb-4"
+				></iconify-icon>
+				<p class="text-black/40 dark:text-white/40 text-lg">
+					暂无对应作品的角色记录
+				</p>
+			</div>
+		</div>
+	</div>
+</MainGridLayout>
