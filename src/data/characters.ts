@@ -19,8 +19,10 @@ export interface CharacterShowcaseItem {
 	startDate?: string;
 	/** 纪念节点说明文案 */
 	dateLabel?: string;
-	/** 展柜右侧去背立绘路径 */
+	/** 展柜卡片图片路径 */
 	portrait: string;
+	/** 图片呈现方式，默认完整展示 */
+	portraitFit?: "contain" | "cover";
 	/** 专属独立特设页路由 */
 	href: string;
 	/** 角色印象主色（用于悬停微光与细节焦点） */
@@ -58,6 +60,7 @@ export const charactersData: CharacterShowcaseItem[] = [
 		roleTag: "绮梦织香",
 		quote: "「愿你的灵魂不再迷惘」",
 		portrait: "/assets/lily/showcase-cover.webp",
+		portraitFit: "cover",
 		href: lilyExhibit.href,
 		accentColor: "#9e68ca",
 		accentSoft: "rgba(184, 148, 255, 0.24)",

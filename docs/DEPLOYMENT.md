@@ -396,6 +396,23 @@ fatal: could not read Username for 'https://github.com'
 3. 验证 `CONTENT_REPO_URL` 是否正确
 4. 清除部署平台的缓存并重新部署
 
+### 问题 8 · 独立展览页样式影响首页布局
+
+**现象**　在莉莉展览页接入后，本地生产预览和 GitHub Pages 首页都出现了正文贴左、导航挤在一起、卡片内边距消失的问题。3440 像素宽的窗口尤其明显，原本应居中的 1440 像素内容区从窗口左边开始。
+
+**原因**　查找本地图片时，`Image.astro` 和文章页的 `import.meta.glob` 会匹配 `src` 下的非图片文件。构建因此把莉莉展览页的 CSS 也加入了首页。浏览器里可以同时看到 Tailwind 的 `mx-auto` 和展览页的 `* { margin: 0; padding: 0; }`。展览页的重置规则位于层叠层之外，覆盖了原有的居中和间距规则。
+
+**修复**　将 `lily-showcase.css` 移到 `public/assets/lily/`，由 `src/pages/lily.astro` 通过 `<link rel="stylesheet">` 单独加载。排查时发现，文件留在 `src` 内时，改用 `?url` 仍会被原有 glob 匹配。直接把 glob 限定为图片会同时移除博客此前依赖它间接加载的 `variables.styl`，主题色也会丢失。
+
+**验证**　在项目根目录生成生产构建，并检查展览页样式的引用范围。
+
+```sh
+pnpm exec astro build
+rg -l 'lily-showcase\.css|_astro/lily-showcase' dist -g '*.html'
+```
+
+搜索结果应只有 `dist/lily/index.html`。在 3440、1440 和 390 像素宽度下打开生产预览，检查首页导航和正文的居中、间距及主题色，再验证文章页样式和角色展柜到莉莉页的往返。本次修复已在本地生产构建通过这些检查。
+
 ---
 
 ## 📋 环境变量参考
