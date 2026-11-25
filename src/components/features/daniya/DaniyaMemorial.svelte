@@ -270,7 +270,7 @@ onMount(() => {
 	<div class="layer-editorial">
 		<!-- 左上角锚点：杂志页眉式返回角色展柜导航 -->
 		<header class="corner-tl">
-			<a href="/showcase/" class="masthead-back">
+			<a href="/showcase/" data-no-swup="" class="masthead-back">
 				<span class="back-dash"></span>
 				<span class="back-label">SHOWCASE</span>
 				<span class="back-sep">/</span>
