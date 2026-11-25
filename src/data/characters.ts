@@ -1,3 +1,5 @@
+import { lilyExhibit } from "./lily";
+
 export interface CharacterShowcaseItem {
 	/** 唯一标识 */
 	id: string;
@@ -14,9 +16,9 @@ export interface CharacterShowcaseItem {
 	/** 展柜代表台词 */
 	quote: string;
 	/** 正计时/纪念起始时间（ISO 格式，前端实时计算天数） */
-	startDate: string;
+	startDate?: string;
 	/** 纪念节点说明文案 */
-	dateLabel: string;
+	dateLabel?: string;
 	/** 展柜右侧去背立绘路径 */
 	portrait: string;
 	/** 专属独立特设页路由 */
@@ -46,5 +48,18 @@ export const charactersData: CharacterShowcaseItem[] = [
 		href: "/daniya/",
 		accentColor: "#d4355d",
 		accentSoft: "rgba(236, 144, 178, 0.22)",
+	},
+	{
+		id: lilyExhibit.id,
+		name: lilyExhibit.name,
+		romanName: "Lily Grace",
+		work: "鸣潮",
+		workEn: "Wuthering Waves",
+		roleTag: "绮梦织香",
+		quote: "「愿你的灵魂不再迷惘」",
+		portrait: "/assets/lily/showcase-cover.webp",
+		href: lilyExhibit.href,
+		accentColor: "#9e68ca",
+		accentSoft: "rgba(184, 148, 255, 0.24)",
 	},
 ];

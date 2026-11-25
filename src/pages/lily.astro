@@ -1,0 +1,312 @@
+---
+import "../components/features/lily/lily-showcase.css";
+
+import { siteConfig } from "../config";
+import { lilyExhibit } from "../data/lily";
+
+const { artwork } = lilyExhibit;
+const title = `莉莉 · 浮梦三境 - ${siteConfig.title}`;
+---
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-mode="nightmare">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="莉莉的角色特设页，在梦境与噩梦之间穿行，探访织香、梦铃与列车。" />
+  <title>{title}</title>
+  <link rel="icon" href="/favicon/favicon-light-32.png" sizes="32x32" media="(prefers-color-scheme: light)" />
+  <link rel="icon" href="/favicon/favicon-dark-32.png" sizes="32x32" media="(prefers-color-scheme: dark)" />
+
+  <!-- Avant-Garde Editorial & Sacred Serif Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Noto+Serif+SC:wght@200;400;600&family=Space+Grotesk:wght@300;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+
+</head>
+<body>
+  <a href="/showcase/" class="hud-back hud-pill hud-pill-standalone" data-no-swup data-hover>← 角色展柜</a>
+
+  <!-- HIDDEN PRIMARY NETEASE AUDIO ELEMENT -->
+  <audio id="bgmAudio" loop preload="none" src="https://music.163.com/song/media/outer/url?id=3458260703.mp3"></audio>
+
+  <!-- FULL-SCREEN INTERACTIVE FX CANVAS (ACT 1 SHARDS + ACT 3 VORTEX & PETALS) -->
+  <canvas id="fx-canvas"></canvas>
+  <div class="film-grain"></div>
+  <div id="spectro-flash"></div>
+
+  <!-- CUSTOM MINIMAL RETICLE CURSOR -->
+  <div id="cursor-aura"></div>
+  <div id="cursor-reticle"></div>
+
+  <!-- ========================================================================
+       GLOBAL MINIMAL HUD (TOP-RIGHT SOUND & INVERT ONLY)
+       ======================================================================== -->
+  <nav class="hud-top-right" aria-label="展览控制">
+    <div class="hud-group" id="sound-group">
+      <button id="btn-sound" class="hud-pill" data-hover aria-label="切换背景音乐">
+        <span class="eq-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span id="sound-label">SOUND</span>
+      </button>
+      <button id="btn-music-popover" class="hud-chevron" data-hover title="网易云播放器 / 本地音频" aria-label="展开音乐面板">♫</button>
+    </div>
+
+    <button id="btn-invert" class="hud-pill hud-pill-standalone" data-hover aria-pressed="false">
+      <span id="invert-label">INVERT</span>
+    </button>
+  </nav>
+
+  <!-- MINI NETEASE CLOUD MUSIC FALLBACK & LOCAL AUDIO POPOVER -->
+  <div id="music-popover" role="dialog" aria-label="音乐播放器">
+    <div class="popover-head">
+      <span>NETEASE // ID 3458260703</span>
+      <button id="btn-close-music" class="mini-btn" data-hover>✕</button>
+    </div>
+    <div class="popover-status" id="music-status">
+      网易云外链若受版权/浏览器策略拦截，可直接使用下方官方播放器或载入本地音频。
+    </div>
+    <div class="netease-frame-wrap" id="netease-frame-wrap">
+      <!-- Iframe injected lazily when opened or fallback triggered -->
+    </div>
+    <div class="popover-actions">
+      <label class="mini-btn" data-hover>
+        本地音频 <input type="file" accept="audio/*" id="upload-local-audio" hidden />
+      </label>
+      <a href="https://music.163.com/song?id=3458260703" target="_blank" rel="noopener noreferrer" class="mini-btn" style="text-decoration:none;" data-hover>
+        打开网易云 ↗
+      </a>
+    </div>
+  </div>
+
+  <!-- RIGHT-EDGE MINIMAL 3-BAR PROGRESS INDICATOR -->
+  <aside class="hud-progress" aria-label="剧幕进度">
+    <a href="#act-01" class="prog-dot active" data-act="0" data-hover><span>01</span><i></i></a>
+    <a href="#act-02" class="prog-dot" data-act="1" data-hover><span>02</span><i></i></a>
+    <a href="#act-03" class="prog-dot" data-act="2" data-hover><span>03</span><i></i></a>
+  </aside>
+
+  <!-- DISCREET BOTTOM-LEFT IMG OVERRIDE TRIGGER -->
+  <button id="btn-img-drawer" class="hud-img-btn" data-hover title="替换本地高清立绘">IMG</button>
+
+  <div id="img-drawer" role="dialog" aria-label="本地立绘替换">
+    <div class="popover-head">
+      <span>LOCAL ARTWORK OVERRIDE</span>
+      <button id="btn-close-drawer" class="mini-btn" data-hover>✕</button>
+    </div>
+    <div class="drawer-row">
+      <span>ACT 1 · DREAM</span>
+      <label class="mini-btn" data-hover>LOAD <input type="file" accept="image/*" id="up-dream" hidden /></label>
+    </div>
+    <div class="drawer-row">
+      <span>ACT 1 · NIGHTMARE</span>
+      <label class="mini-btn" data-hover>LOAD <input type="file" accept="image/*" id="up-nightmare" hidden /></label>
+    </div>
+    <div class="drawer-row">
+      <span>ACT 2 · 01 织香</span>
+      <label class="mini-btn" data-hover>LOAD <input type="file" accept="image/*" id="up-blade-0" hidden /></label>
+    </div>
+    <div class="drawer-row">
+      <span>ACT 2 · 02 梦铃</span>
+      <label class="mini-btn" data-hover>LOAD <input type="file" accept="image/*" id="up-blade-1" hidden /></label>
+    </div>
+    <div class="drawer-row">
+      <span>ACT 2 · 03 列车</span>
+      <label class="mini-btn" data-hover>LOAD <input type="file" accept="image/*" id="up-blade-2" hidden /></label>
+    </div>
+    <div class="drawer-row" style="padding-top:8px; border-top:1px solid rgba(255,255,255,0.12);">
+      <span style="opacity:0.5;">RESTORE CONFIG</span>
+      <button id="btn-reset-imgs" class="mini-btn" data-hover>RESET</button>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       ACT 01 · THE RIFT (CLEAN, PURE DUAL-WORLD DIAGONAL SLASH)
+       ======================================================================== -->
+  <section id="act-01" class="act">
+    <!-- Layer B: Nightmare -->
+    <div class="rift-layer rift-layer-nightmare">
+      <img id="img-nightmare" class="rift-img" src={artwork.act1Nightmare} alt="莉莉 · 噩梦" />
+    </div>
+
+    <!-- Layer A: Dream (Clipped by Diagonal Rift) -->
+    <div class="rift-layer rift-layer-dream" id="layer-top">
+      <img id="img-dream" class="rift-img" src={artwork.act1Dream} alt="莉莉 · 梦境" fetchpriority="high" />
+    </div>
+
+    <div class="rift-vignette"></div>
+
+    <!-- High-Energy Diagonal Light Blade with RGB Chromatic Split -->
+    <svg id="rift-blade-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <defs>
+        <filter id="rift-glow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="1.4" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+      <line id="rift-line-aura" x1="58" y1="0" x2="42" y2="100"
+            stroke="#b894ff" stroke-width="14" stroke-opacity="0.34"
+            vector-effect="non-scaling-stroke" filter="url(#rift-glow)" />
+      <line id="rift-line-cyan" x1="57.6" y1="0" x2="41.6" y2="100"
+            stroke="#8ef2ff" stroke-width="2" stroke-opacity="0.76"
+            vector-effect="non-scaling-stroke" />
+      <line id="rift-line-ember" x1="58.4" y1="0" x2="42.4" y2="100"
+            stroke="#ff5c40" stroke-width="2" stroke-opacity="0.68"
+            vector-effect="non-scaling-stroke" />
+      <line id="rift-line-core" x1="58" y1="0" x2="42" y2="100"
+            stroke="#ffffff" stroke-width="1.6" stroke-opacity="0.96"
+            vector-effect="non-scaling-stroke" />
+    </svg>
+
+    <!-- Ultra-Pure Focal Typography: ONLY "LILY" -->
+    <div class="act1-focal-wrap">
+      <h1 class="act1-giant-title">LILY</h1>
+    </div>
+
+    <!-- Minimal Bottom-Center Scroll Cue -->
+    <div class="act1-scroll-cue" aria-hidden="true">
+      <span>SCROLL</span>
+      <div class="scroll-hairline"></div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       ACT 02 · OPTICAL SHUTTER // 浮梦三境 (KINETIC TRI-BLADE INSTALLATION)
+       ======================================================================== -->
+  <section id="act-02" class="act">
+    <!-- Dynamic Atmospheric Canvas (Scent / Chime / Train) -->
+    <canvas id="act2-canvas"></canvas>
+
+    <!-- Ultra-Faint Architectural Outline Typography -->
+    <div class="act2-ghost-marquee" aria-hidden="true">
+      <div class="act2-ghost-track">
+        <span class="act2-ghost-text">OPTICAL SHUTTER · 浮梦三境 · LILY GRACE · </span>
+        <span class="act2-ghost-text">OPTICAL SHUTTER · 浮梦三境 · LILY GRACE · </span>
+      </div>
+    </div>
+
+    <!-- Foreground Centerpiece: Three Tall Kinetic Glass Blades -->
+    <div class="shutter-stage" id="shutter-stage">
+      <!-- Blade 01 · 织香 / SCENT -->
+      <article class="blade active" data-blade="0" data-hover>
+        <div class="blade-media">
+          <img id="img-blade-0" class="blade-img" src={artwork.act2Blade1Scent} alt="织香 · 绮梦余香后调" loading="lazy" />
+        </div>
+        <div class="blade-scrim"></div>
+        <div class="blade-content">
+          <div class="blade-head">
+            <span class="blade-index">01</span>
+            <span class="blade-en">SCENT</span>
+          </div>
+          <div class="blade-foot">
+            <h2 class="blade-title">织香</h2>
+            <p class="blade-line">「以看不见的颜料调和花息，抚平战火留下的无声裂痕。」</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Blade 02 · 梦铃 / CHIME -->
+      <article class="blade" data-blade="1" data-hover>
+        <div class="blade-media">
+          <img id="img-blade-1" class="blade-img" src={artwork.act2Blade2Chime} alt="梦铃 · 绮梦余香前调" loading="lazy" />
+        </div>
+        <div class="blade-scrim"></div>
+        <div class="blade-content">
+          <div class="blade-head">
+            <span class="blade-index">02</span>
+            <span class="blade-en">CHIME</span>
+          </div>
+          <div class="blade-foot">
+            <h2 class="blade-title">梦铃</h2>
+            <p class="blade-line">「摇篮的安魂语轻响，所有未眠的灵魂终将归于宁静。」</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Blade 03 · 列车 / TRAIN -->
+      <article class="blade" data-blade="2" data-hover>
+        <div class="blade-media">
+          <img id="img-blade-2" class="blade-img" src={artwork.act2Blade3Train} alt="列车 · 绮梦余香中调" loading="lazy" />
+        </div>
+        <div class="blade-scrim"></div>
+        <div class="blade-content">
+          <div class="blade-head">
+            <span class="blade-index">03</span>
+            <span class="blade-en">TRAIN</span>
+          </div>
+          <div class="blade-foot">
+            <h2 class="blade-title">列车</h2>
+            <p class="blade-line">「星星落地化作同行之人，乘上列车在无垠星空下飞驰。」</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       ACT 03 · REQUIEM (VOID HOLD-TO-WEAVE CLIMAX)
+       ======================================================================== -->
+  <section id="act-03" class="act">
+    <div id="act3-shake-stage">
+      <div id="astrolabe-wrap" data-hover role="button" aria-label="长按织梦">
+        <svg id="astrolabe-svg" viewBox="0 0 340 340" fill="none">
+          <!-- Outer Hairline Ring -->
+          <g id="astro-ring-outer" style="transform-origin: 170px 170px;">
+            <circle cx="170" cy="170" r="160" stroke="currentColor" stroke-opacity="0.22" stroke-width="0.75" stroke-dasharray="2 8" />
+            <line x1="170" y1="2" x2="170" y2="14" stroke="#b894ff" stroke-width="1.2" />
+            <line x1="170" y1="326" x2="170" y2="338" stroke="#b894ff" stroke-width="1.2" />
+            <line x1="2" y1="170" x2="14" y2="170" stroke="#e8d5b5" stroke-width="1.2" />
+            <line x1="326" y1="170" x2="338" y2="170" stroke="#e8d5b5" stroke-width="1.2" />
+          </g>
+
+          <!-- Middle Geometric White-Lily Star Ring -->
+          <g id="astro-ring-mid" style="transform-origin: 170px 170px;">
+            <circle cx="170" cy="170" r="130" stroke="currentColor" stroke-opacity="0.16" stroke-width="0.8" />
+            <path d="M170 60 C156 108 156 142 170 170 C184 142 184 108 170 60 Z" stroke="#b894ff" stroke-opacity="0.55" stroke-width="0.85" />
+            <path d="M170 60 C156 108 156 142 170 170 C184 142 184 108 170 60 Z" stroke="#b894ff" stroke-opacity="0.55" stroke-width="0.85" transform="rotate(60 170 170)" />
+            <path d="M170 60 C156 108 156 142 170 170 C184 142 184 108 170 60 Z" stroke="#b894ff" stroke-opacity="0.55" stroke-width="0.85" transform="rotate(120 170 170)" />
+            <path d="M170 60 C156 108 156 142 170 170 C184 142 184 108 170 60 Z" stroke="#e8d5b5" stroke-opacity="0.45" stroke-width="0.85" transform="rotate(180 170 170)" />
+            <path d="M170 60 C156 108 156 142 170 170 C184 142 184 108 170 60 Z" stroke="#e8d5b5" stroke-opacity="0.45" stroke-width="0.85" transform="rotate(240 170 170)" />
+            <path d="M170 60 C156 108 156 142 170 170 C184 142 184 108 170 60 Z" stroke="#e8d5b5" stroke-opacity="0.45" stroke-width="0.85" transform="rotate(300 170 170)" />
+          </g>
+
+          <!-- Charge Progress Arc (r = 145, C = 911.06) -->
+          <circle cx="170" cy="170" r="145" stroke="currentColor" stroke-opacity="0.1" stroke-width="1.5" />
+          <circle
+            id="hold-progress-arc"
+            cx="170" cy="170" r="145"
+            stroke="#b894ff"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-dasharray="911.06"
+            stroke-dashoffset="911.06"
+            transform="rotate(-90 170 170)"
+          />
+        </svg>
+
+        <div class="astro-center-hud">
+          <span id="hold-pct">000%</span>
+          <span id="hold-cn">长按织梦</span>
+        </div>
+      </div>
+
+      <div class="hold-en-sub" id="hold-en-sub">HOLD ANYWHERE TO WEAVE THE DREAM</div>
+    </div>
+
+    <!-- Post-Bloom Epilogue: Strictly 「愿你的灵魂不再迷惘」 -->
+    <div id="epilogue-reveal">
+      <p class="epilogue-quote">「愿你的灵魂不再迷惘」</p>
+      <button id="btn-replay" class="replay-btn" data-hover>REPLAY</button>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       CORE CONFIGURATION & 60FPS INTERACTION ENGINE
+       ======================================================================== -->
+  <script>
+    import "../components/features/lily/lily-showcase.js";
+  </script>
+</body>
+</html>
